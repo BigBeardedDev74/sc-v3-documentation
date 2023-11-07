@@ -1,5 +1,5 @@
 <script>
-  import { onMount } from "svelte";
+  import Accordion from "$components/Accordion.svelte";
   import { fly, fade } from "svelte/transition";
   import "$css/prism.css";
   import "$css/prism-okaidia.css";
@@ -104,65 +104,63 @@
       in:fly={{ x: -200, duration: 25 * i }}
       out:fly={{ x: 200, duration: 25 * i }}
     >
-      <details class="configs">
-        <summary>{option.title}</summary>
-        <div class="configDetails">
-          <p><strong>Type:</strong> {option.type}</p>
-          <p><strong>Description:</strong> {@html option.desc}</p>
-          <p><strong>Required:</strong> {option.required}</p>
-        </div>
-      </details>
+      <Accordion
+        title={option.title}
+        type={option.type}
+        desc={option.desc}
+        required={option.required}
+      />
     </div>
   {/each}
   <h3 class="title">Config Example</h3>
   <Prism>
     {`{
-      "Config": [
+  "Config": [
+    {
+      "title": "Find My Gutter Pro",
+      "offerId": 4696,
+      "anuraTrack": true,
+      "gTag": "G-VG59X3Q6FF",
+      "gtmContainer": "GTM-TWHNRFM",
+      "surveyType": "homeservices",
+      "surveyName": "findmygutterpro.com",
+      "organicLink": "https://suited45trk.com/?bbz=lSMA4bl%2fMofkHbQf%2brERHNPNdXRxXVOb&cp=js&s1=SUB_ID",
+      "GOid": "",
+      "headline": "Compare Quotes From Top-Rated Gutter Experts",
+      "subHeadline": "30-second form! Find your Pro!",
+      "useWebHooks": true,
+      "gutterStepper": true,
+      "headlineInHeader": false,
+      "backButton": "Back",
+      "nextButton": "Next",
+      "focusOnLoad": true,
+      "textInLogo": "",
+      "additionalGutterSubHeadline": true,
+      "showGutterInItForYou": true,
+      "submitButton": "View My Pros!",
+      "submitButtonIcon": "none",
+      "scData": {
+        "siteName": "findmygutterpro.com",
+        "siteNameV2": "v3.",
+        "siteVertical": "hs_gutter"
+      },
+      "hiddenFields": [
         {
-          "title": "Find My Gutter Pro",
-          "offerId": 4696,
-          "anuraTrack": true,
-          "gTag": "G-VG59X3Q6FF",
-          "gtmContainer": "GTM-TWHNRFM",
-          "surveyType": "homeservices",
-          "surveyName": "findmygutterpro.com",
-          "organicLink": "https://suited45trk.com/?bbz=lSMA4bl%2fMofkHbQf%2brERHNPNdXRxXVOb&cp=js&s1=SUB_ID",
-          "GOid": "",
-          "headline": "Compare Quotes From Top-Rated Gutter Experts",
-          "subHeadline": "30-second form! Find your Pro!",
-          "useWebHooks": true,
-          "gutterStepper": true,
-          "headlineInHeader": false,
-          "backButton": "Back",
-          "nextButton": "Next",
-          "focusOnLoad": true,
-          "textInLogo": "",
-          "additionalGutterSubHeadline": true,
-          "showGutterInItForYou": true,
-          "submitButton": "View My Pros!",
-          "submitButtonIcon": "none",
-          "scData": {
-            "siteName": "findmygutterpro.com",
-            "siteNameV2": "v3.",
-            "siteVertical": "hs_gutter"
-          },
-          "hiddenFields": [
-            {
-              "question": "Residential",
-              "value": "Yes"
-            },
-            {
-              "question": "Project",
-              "value": "Gutters"
-            },
-            {
-              "question": "PropertyType",
-              "value": "Single Family"
-            }
-          ]
+          "question": "Residential",
+          "value": "Yes"
+        },
+        {
+          "question": "Project",
+          "value": "Gutters"
+        },
+        {
+          "question": "PropertyType",
+          "value": "Single Family"
         }
       ]
-    }`}
+    }
+  ]
+}`}
   </Prism>
 </section>
 
@@ -181,12 +179,14 @@
   .configs {
     margin-left: 2rem;
   }
+
   .configDetails {
     padding: 1rem;
     border: 2px solid #ccc;
     border-radius: 10px;
     background: var(--bgColor);
-    margin: 0 0 1rem 2rem;
+    margin: 0 2rem 1rem;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
   }
   .titleContainer {
     display: flex;

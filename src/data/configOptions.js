@@ -236,7 +236,17 @@ const configOptions = [
   {
     title: "nextButtonIcon",
     type: "string",
-    desc: "type of icon you want next to the next button",
+    desc: `type of icon you want next to the next button:
+      <ul>
+        <li>BackButtonCircleArrow</li>
+        <li>Chevron</li>
+        <li>ChevronThin</li>
+        <li>ChevronWide</li>
+        <li>DoubleChevron</li>
+        <li>FatArrow</li>
+        <li>ThinArrow</li>
+        <li>TriangleArrow</li>
+      </ul> `,
     required: false,
   },
   {
@@ -297,6 +307,12 @@ const configOptions = [
     title: "useWebHooks",
     type: "boolean",
     desc: "turn web hook tracking",
+    required: false,
+  },
+  {
+    title: "focusOnLoad",
+    type: "boolean",
+    desc: "place the cursor in the first input field on page load",
     required: false,
   },
 ];
