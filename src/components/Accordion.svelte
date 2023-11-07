@@ -37,6 +37,7 @@
     margin: 0 2rem 1rem;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
   }
+
   .openButton {
     background: none;
     border: none;
@@ -44,14 +45,18 @@
     padding: 0;
     margin: 0;
   }
+
   .option {
     margin: 10px 0 5px 0;
+    font-size: 1.1em;
+
     &:before {
       content: "▷";
       margin-right: 5px;
       display: inline-block;
       transition: all 0.2s ease-in-out;
     }
+
     &.open:before {
       transform: rotate(90deg);
     }

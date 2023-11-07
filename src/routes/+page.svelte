@@ -1,8 +1,7 @@
 <script>
   import Accordion from "$components/Accordion.svelte";
   import { fly, fade } from "svelte/transition";
-  import "$css/prism.css";
-  import "$css/prism-okaidia.css";
+
   import Prism from "svelte-prism";
   import configOptions from "$data/configOptions";
 
@@ -39,7 +38,7 @@
     it'll be more work than it's worth):
   </p>
 
-  <Prism>
+  <Prism source="">
     {`pnpm copy {existing site name} {new site name}`}
   </Prism>
 
@@ -47,18 +46,18 @@
     If you are using an existing design but moving to a different vertical, add
     the vertical to the end of the command:
   </p>
-  <Prism>
+  <Prism source="">
     {`pnpm copy {existing site name} {new site name} {vertical}`}
   </Prism>
 </section>
 <section class="section testSite">
   <h3 class="title">Test the new site</h3>
   <p>There are 2 options to run the dev</p>
-  <Prism>
+  <Prism source="">
     {`pnpm dev {site name}`}
   </Prism>
   <p>-or-</p>
-  <Prism>
+  <Prism source="">
     {`pnpm -F {site name} dev`}
   </Prism>
   <p>
@@ -73,6 +72,71 @@
     The site can be dev'd at this point however it will pull the information
     from the site it was copied from. See the
     <a href="#config">Config section</a> for more info.
+  </p>
+</section>
+
+<section class="section dbSetup">
+  <h3 class="title">Database Setup</h3>
+
+  <h4 class="subTitle">Add Site</h4>
+
+  <p>
+    The site needs to be configured in the database, first go to <a
+      href="https://jtk.printfinger.tech/sites/survey-sites"
+      target="_blank">jtk.printfinger.tech/sites/survey-sites</a
+    > and click the 'Add Survey Site' button.
+  </p>
+  <p>Fill out the form with the following information:</p>
+  <ul>
+    <li>Site URL - do not include "https://"</li>
+    <li>
+      Staging Sub Domain - if the site is on a subdomain add "v3-" otherwise add
+      "v3."
+    </li>
+    <li>Site Type - select from the dropdown</li>
+    <li>Site-Vertical - select from the dropdown</li>
+  </ul>
+
+  <p>
+    You have likely not set up the staging and production cloudfronts yet and S3
+    Staging Bucket will default to "v3stage.com", which is what you want, so
+    click save.
+  </p>
+  <h4 class="subTitle">Config</h4>
+
+  <p>
+    Next, go to <a
+      href="https://jtk.printfinger.tech/sites/config-editor"
+      target="_blank"
+    >
+      jtk.printfinger.tech/sites/config-editor
+    </a>
+    , you can also click "Sites > Config Editor" in the sidebar. The easiest thing
+    to do is grab and existing config (best to grab the one from the site you based
+    the new site off of). Paste it into your editor and update all the elements that
+    need to be changed (ie. title, siteName, offerId, etc). Please note that all
+    the boolean values default to false, so if you are changing one from true you
+    can simple remove it. Once you have updated the config, return to the config
+    editor and click the "Create" button in the config column for the new site. Paste
+    the config into the editor and click submit.
+  </p>
+
+  <p>
+    Once you have updated the config, go to the 'utils>backupSiteData.js' file
+    for the new site and update the defaultConfig with the new config
+  </p>
+  <p>
+    There are config options to control many of the elements of the sites. See
+    the complete list of <a href="#config">config options</a> and what they do below.
+  </p>
+
+  <h4 class="subTitle">Questions</h4>
+  <p>
+    If you are using the same questions from the site you replicated, you can
+    copy the questions from that site on the config editor page. Then return to
+    the new page click "Create" in the questions, paste the questions and click
+    submit. No need to update the backupSiteData as it will pull from the
+    database and rebuild when the site is staged.
   </p>
 </section>
 
@@ -113,7 +177,7 @@
     </div>
   {/each}
   <h3 class="title">Config Example</h3>
-  <Prism>
+  <Prism source="">
     {`{
   "Config": [
     {
@@ -165,17 +229,6 @@
 </section>
 
 <style lang="postcss">
-  .section {
-    padding: 1rem;
-    border: 2px solid #ccc;
-    border-radius: 10px;
-    margin-bottom: 2rem;
-    background: var(--bgColor);
-    overflow-x: hidden;
-  }
-  .title {
-    text-decoration: underline;
-  }
   .configs {
     margin-left: 2rem;
   }

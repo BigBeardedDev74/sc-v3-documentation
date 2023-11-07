@@ -1,7 +1,8 @@
 <script>
   import "$css/reset.css";
   import "$css/styles.css";
-
+  import "$css/prism.css";
+  import "$css/prism-okaidia.css";
   import { Logo } from "$img";
 </script>
 
@@ -14,10 +15,18 @@
   />
 </svelte:head>
 <header>
-  <div class="logoContainer">
-    <img src={Logo} alt="Logo" />
+  <div class="notNav">
+    <div class="logoContainer">
+      <img src={Logo} alt="Logo" />
+    </div>
+    <p class="title">V3 - Documentation</p>
   </div>
-  <p class="title">V3 - Documentation</p>
+  <nav class="nav">
+    <a href="/">New Site Creation</a>
+    <a href="/development">Development</a>
+    <a href="/testing">Testing</a>
+    <a href="/troubleshooting">Troubleshooting</a>
+  </nav>
 </header>
 <main>
   <slot />
@@ -25,13 +34,34 @@
 
 <style>
   header {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 30px;
     align-items: center;
+    justify-content: space-between;
     padding: 20px;
     border-bottom: 1px solid var(--borderColor);
     background: var(--bgColor);
   }
+  .notNav,
+  .nav {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 20px;
+  }
+  .nav {
+    justify-content: flex-end;
+    a {
+      color: var(--buttonBgColor);
+
+      &:hover {
+        text-decoration: underline;
+        text-shadow: none;
+      }
+    }
+  }
+
   .logoContainer {
     width: clamp(100px, 20vw, 250px);
   }
@@ -40,6 +70,7 @@
     font-weight: 700;
     color: var(--textColor);
     margin: 0;
+    text-decoration: none;
   }
   main {
     padding: 40px 0;
