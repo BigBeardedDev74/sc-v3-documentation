@@ -1,0 +1,28 @@
+:root {
+  --backgroundColor: #dedede;
+  --textColor: #333;
+  --borderColor: #ccc;
+  --bgColor: #fff;
+  --buttonBgColor: oklch(37.44% 0.077 233.06);
+  --buttonTextColor: #fff;
+}
+body,
+html {
+  font-family: "Lato", sans-serif;
+  font-size: 18px;
+  background: var(--backgroundColor);
+  color: var(--textColor);
+}
+.configCodeBlock {
+  display: block;
+  width: 90%;
+  background: #272822;
+  color: #fff;
+  border: 2px solid #777777;
+  border-radius: 5px;
+  padding: 10px 10px 10px 20px;
+  margin: 10px 0;
+}
+.codeIndent {
+  margin: 0 0 0 20px;
+}
