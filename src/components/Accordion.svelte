@@ -49,6 +49,7 @@
   .option {
     margin: 10px 0 5px 0;
     font-size: 1.1em;
+    color: var(--textColor);
 
     &:before {
       content: "▷";

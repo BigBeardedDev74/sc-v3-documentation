@@ -23,7 +23,7 @@
 
 <h2>Getting Started:</h2>
 
-<section class="section packageManager" id="packageManager" transition:fade>
+<section class="section packageManager" id="packageManager">
   <h3 class="title">Package Management</h3>
   <p>
     We are using PNPM as our package manager, all commands will be done using

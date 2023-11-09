@@ -1,10 +1,23 @@
 :root {
-  --backgroundColor: #dedede;
-  --textColor: #333;
-  --borderColor: #ccc;
-  --bgColor: #fff;
+  --backgroundColor: oklch(90.06% 0 0);
+  --textColor: oklch(32.11% 0 0);
+  --borderColor: oklch(84.52% 0 0);
+  --bgColor: oklch(100% 0 0);
   --buttonBgColor: oklch(37.44% 0.077 233.06);
-  --buttonTextColor: #fff;
+  --buttonTextColor: oklch(100% 0 0);
+  --hoverGlow: 0 0 2px #fff, 0 0 2px #fff, 0 0 2px #fff, 0 0 2px #fff,
+    0 0 15px #6db4dc, 0 0 15px #6db4dc, 0 0 15px #6db4dc, 0 0 15px #6db4dc,
+    0 0 15px #6db4dc;
+  /* @media (prefers-color-scheme: dark) {
+    --backgroundColor: oklch(16.84% 0 0);
+    --textColor: oklch(100% 0 0);
+    --borderColor: oklch(32.11% 0 0);
+    --bgColor: oklch(16.84% 0 0);
+    --buttonBgColor: oklch(77.44% 0.077 233.06);
+    --hoverGlow: 0 0 2px #000, 0 0 2px #000, 0 0 2px #000, 0 0 2px #000,
+      0 0 15px #6db4dc, 0 0 15px #6db4dc, 0 0 15px #6db4dc, 0 0 15px #6db4dc,
+      0 0 15px #6db4dc;
+  } */
 }
 body,
 html {
@@ -36,12 +49,10 @@ h4 {
 
 a {
   color: var(--buttonBgColor);
-  transition: text-shadow 0.25s ease-in-out;
+  transition: text-shadow 0.25s ease-out;
   &:hover {
     text-decoration: underline;
-    text-shadow: 0 0 2px #fff, 0 0 2px #fff, 0 0 2px #fff, 0 0 2px #fff,
-      0 0 15px #6db4dc, 0 0 15px #6db4dc, 0 0 15px #6db4dc, 0 0 15px #6db4dc,
-      0 0 15px #6db4dc;
+    text-shadow: var(--hoverGlow);
   }
 }
 

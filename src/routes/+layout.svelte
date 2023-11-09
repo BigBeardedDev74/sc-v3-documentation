@@ -1,9 +1,12 @@
 <script>
+  import { fade } from "svelte/transition";
   import "$css/reset.css";
   import "$css/styles.css";
   import "$css/prism.css";
   import "$css/prism-okaidia.css";
   import { Logo } from "$img";
+
+  export let data;
 </script>
 
 <svelte:head>
@@ -24,12 +27,17 @@
   <nav class="nav">
     <a href="/">New Site Creation</a>
     <a href="/development">Development</a>
+    <a href="/deployment">Deployment</a>
     <a href="/testing">Testing</a>
     <a href="/troubleshooting">Troubleshooting</a>
   </nav>
 </header>
 <main>
-  <slot />
+  {#key data.pathname}
+    <div in:fade={{ duration: 150, delay: 155 }} out:fade={{ duration: 150 }}>
+      <slot />
+    </div>
+  {/key}
 </main>
 
 <style>
