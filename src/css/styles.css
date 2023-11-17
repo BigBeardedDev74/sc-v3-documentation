@@ -8,6 +8,15 @@
   --hoverGlow: 0 0 2px #fff, 0 0 2px #fff, 0 0 2px #fff, 0 0 2px #fff,
     0 0 15px #6db4dc, 0 0 15px #6db4dc, 0 0 15px #6db4dc, 0 0 15px #6db4dc,
     0 0 15px #6db4dc;
+  --primaryColor: oklch(40.12% 0.076 230.01);
+  --secondaryColor: oklch(63.6% 0.131 162.58);
+
+  --padding-inline: 1rem;
+  --content-max-width: 1170px;
+  --breakout-max-width: 1350px;
+  --breakout-size: calc(
+    (var(--breakout-max-width) - var(--content-max-width)) / 2
+  );
   /* @media (prefers-color-scheme: dark) {
     --backgroundColor: oklch(16.84% 0 0);
     --textColor: oklch(100% 0 0);

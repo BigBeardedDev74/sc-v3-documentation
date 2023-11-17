@@ -27,4 +27,12 @@
     are for namecheap, but occassionally the DNS is managed in Route53 (AWS) or
     sadly even 💩GoDaddy💩.
   </p>
+  <h3 class="title">Add Cert to Namecheap</h3>
+  <p>
+    In namecheap, go to the domain list and click "Manage" next to the domain
+    you're working on. Click "Advanced DNS" in the left hand menu. Scroll down
+    to the "Host Records" section and click "Add New Record". Select "CNAME
+    Record" from the dropdown. Use the data from the certificate manager to
+    complete the host and value fields. Click the checkmark to save.
+  </p>
 </section>

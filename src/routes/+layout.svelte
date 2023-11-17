@@ -1,5 +1,6 @@
 <script>
   import { fade } from "svelte/transition";
+  import { page } from "$app/stores";
   import "$css/reset.css";
   import "$css/styles.css";
   import "$css/prism.css";
@@ -25,11 +26,28 @@
     <p class="title">V3 - Documentation</p>
   </div>
   <nav class="nav">
-    <a href="/">New Site Creation</a>
-    <a href="/development">Development</a>
-    <a href="/deployment">Deployment</a>
-    <a href="/testing">Testing</a>
-    <a href="/troubleshooting">Troubleshooting</a>
+    <a href="/" class={$page.data.pathname === "/" ? "active" : ""}
+      >New Site Creation</a
+    >
+    <a
+      href="/development"
+      class={$page.data.pathname === "/development" ? "active" : ""}
+      >Development</a
+    >
+    <a
+      href="/deployment"
+      class={$page.data.pathname === "/deployment" ? "active" : ""}
+      >Deployment</a
+    >
+    <a
+      href="/testing"
+      class={$page.data.pathname === "/testing" ? "active" : ""}>Testing</a
+    >
+    <a
+      href="/troubleshooting"
+      class={$page.data.pathname === "/troubleshooting" ? "active" : ""}
+      >Troubleshooting</a
+    >
   </nav>
 </header>
 <main>
@@ -62,10 +80,19 @@
     justify-content: flex-end;
     a {
       color: var(--buttonBgColor);
+      transition: all 0.2s ease-in-out;
 
       &:hover {
-        text-decoration: underline;
+        transform: scale(1.1);
+        text-decoration: none;
         text-shadow: none;
+      }
+      &.active {
+        color: var(--secondaryColor);
+        border-bottom: 2px solid var(--secondaryColor);
+        &:hover {
+          text-decoration: none;
+        }
       }
     }
   }
@@ -81,9 +108,34 @@
     text-decoration: none;
   }
   main {
+    display: grid;
+    grid-template-columns:
+      [full-width-start] minmax(var(--padding-inline), 1fr)
+      [breakout-start] minmax(0, var(--breakout-size))
+      [content-start] min(
+        100% - (var(--padding-inline) * 2),
+        var(--content-max-width)
+      )
+      [content-end]
+      minmax(0, var(--breakout-size)) [breakout-end]
+      minmax(var(--padding-inline), 1fr) [full-width-end];
     padding: 40px 0;
-    width: calc(100% - 40px);
-    max-width: 1170px;
+
     margin: 0 auto;
+  }
+  main > :not(.breakout, .full-width),
+  .full-width > :not(.breakout, .full-width) {
+    grid-column: content;
+  }
+
+  main > .breakout {
+    grid-column: breakout;
+  }
+
+  main > .full-width {
+    grid-column: full-width;
+
+    display: grid;
+    grid-template-columns: inherit;
   }
 </style>
