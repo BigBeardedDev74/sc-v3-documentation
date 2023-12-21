@@ -8,7 +8,7 @@
   let configDetails = configOptions;
 
   configDetails = configDetails.map((option) => {
-    let searchTerms = `${option.title} ${option.desc} ${option?.keywords}`;
+    let searchTerms = `${option?.title} ${option?.desc} ${option?.keywords}`;
     return { ...option, searchTerms };
   });
 
@@ -63,13 +63,15 @@
     <button
       on:click={() =>
         (updatedConfigDetails = $searchStore.filtered.filter(
-          (option) => option.required === true
+          (/** @type {{ required: boolean; }} */ option) =>
+            option.required === true
         ))}>Required</button
     >
     <button
       on:click={() =>
         (updatedConfigDetails = $searchStore.filtered.filter(
-          (option) => option.required === false
+          (/** @type {{ required: boolean; }} */ option) =>
+            option.required === false
         ))}>Optional</button
     >
   </div>

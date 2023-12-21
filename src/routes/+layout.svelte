@@ -20,12 +20,14 @@
   />
 </svelte:head>
 <header>
-  <div class="notNav">
-    <div class="logoContainer">
-      <img src={Logo} alt="Logo" />
+  <a href="/">
+    <div class="notNav">
+      <div class="logoContainer">
+        <img src={Logo} alt="Logo" />
+      </div>
+      <p class="title">V3 - Documentation</p>
     </div>
-    <p class="title">V3 - Documentation</p>
-  </div>
+  </a>
   <Nav />
 </header>
 <main>
@@ -52,6 +54,12 @@
     padding: 20px;
     border-bottom: 1px solid var(--borderColor);
     background: var(--bgColor);
+    a {
+      &:hover {
+        --hoverGlow: none;
+        text-decoration: none;
+      }
+    }
   }
 
   .logoContainer {
