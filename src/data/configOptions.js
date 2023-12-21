@@ -298,12 +298,6 @@ const configOptions = [
     required: false,
   },
   {
-    title: "organicLink",
-    type: "string",
-    desc: "organic cake pixel value",
-    required: false,
-  },
-  {
     title: "useWebHooks",
     type: "boolean",
     desc: "turn web hook tracking",
@@ -313,6 +307,181 @@ const configOptions = [
     title: "focusOnLoad",
     type: "boolean",
     desc: "place the cursor in the first input field on page load",
+    required: false,
+  },
+  {
+    title: "YearsModelMakeSamePage",
+    type: "boolean",
+    desc: "for auto sites, if the year, model, make are on the same page",
+    required: false,
+  },
+  {
+    title: "dontAdvanceRadioButtons",
+    type: "boolean",
+    desc: "prevents the form from advancing when a radio button is clicked, this is used if there are multiple fields on the same page",
+    required: false,
+  },
+  {
+    title: "multiQuestionPage",
+    type: "boolean",
+    desc: "set to true if there are multiple questions on the same page to show page headlines instead of question headlines",
+    required: false,
+  },
+  {
+    title: "questionLoadDelay",
+    type: "number",
+    desc: "number of milliseconds to delay the question load, if there are multiple questions on the same page a lower number will make the questions load faster",
+    required: false,
+  },
+  {
+    title: "aboveHeadlineStepper",
+    type: "boolean",
+    desc: "will place the stepper above the headline",
+    required: false,
+  },
+  {
+    title: "showNumbers",
+    type: "boolean",
+    desc: "shows numbers in the stepper",
+    required: false,
+  },
+  {
+    title: "topStepper",
+    type: "boolean",
+    desc: "show stepper at the top of the page",
+    required: false,
+  },
+  {
+    title: "simpleForm",
+    type: "boolean",
+    desc: "sets formData.SiteServer to 'sc-frontend-sf'",
+    required: false,
+  },
+  {
+    title: "dynamicHeadline",
+    type: "string",
+    desc: "headline the uses {{city}}, {{ZipCode}} or {{state}} in it to be replaced with the users location",
+    required: false,
+  },
+  {
+    title: "showProgressBar",
+    type: "boolean",
+    desc: "show progress bar",
+    required: false,
+  },
+  {
+    title: "showPercentage",
+    type: "boolean",
+    desc: "show percentage complete on the progress bar",
+    required: false,
+  },
+  {
+    title: "skipQuestions",
+    type: "object",
+    desc: `Skips questions based on the answer to another question: 
+    <div>Example:
+    <code class="configCodeBlock">
+    "skipQuestions": [
+      {
+        "OnQuestion": "PathChoice",
+        "IfValues": {
+          "FieldName": "PathChoice",
+          "DoesNotInclude": true,
+          "Values": [
+            "refi"
+          ]
+        },
+        "QuestionToSkip": [
+          "CashoutPurpose"
+        ]
+      }
+    ]
+    </code>
+    </div>`,
+    required: false,
+  },
+  {
+    title: "noWeightAndHeight",
+    type: "boolean",
+    desc: "sets default weight and height based on gender in buildLead",
+    required: false,
+  },
+  {
+    title: "autoscroll",
+    type: "boolean",
+    desc: "autoscroll to show the first 3 lines of the TCPA",
+    required: false,
+  },
+  {
+    title: "isMediaAlpha",
+    type: "boolean",
+    desc: "site uses MediaAlpha",
+    required: false,
+  },
+  {
+    title: "allowSkipBirthday",
+    type: "boolean",
+    desc: "let's the user skip the birthday question",
+    required: false,
+  },
+  {
+    title: "persistentMessage",
+    type: "string",
+    desc: "message that will be shown on every page",
+    required: false,
+  },
+  {
+    title: "medMessage",
+    type: "string",
+    desc: "message that will be shown on every page for med sites",
+    required: false,
+  },
+  {
+    title: "additionalFooterText",
+    type: "string",
+    desc: "additional footer text to be displayed between the disclosure and the links",
+    required: false,
+  },
+  {
+    title: "ffHeadline",
+    type: "string",
+    desc: "headline for the final frame",
+    required: false,
+  },
+  {
+    title: "referenceLink",
+    type: "string",
+    desc: "additional link to be displayed in the footer",
+    required: false,
+  },
+  {
+    title: "priceByState",
+    type: "boolean",
+    desc: "makes api call to get the average home price by state",
+    required: false,
+  },
+  {
+    title: "displayEquityCashout",
+    type: "boolean",
+    desc: "replace $5000 on CashNeeded question with the users equity",
+    required: false,
+  },
+  {
+    title: "MortFirst",
+    type: "boolean",
+    desc: "set to true if the MortgageAmount question is before the EstimatedPropertyValue question",
+    required: false,
+  },
+  {
+    title: "combinedMortAndPropVal",
+    type: "boolean",
+    desc: "set to true if MortgageAmount and EstimatedPropertyValue are on the same frame",
+    required: false,
+  },
+  {
+    title: "hideHeadline",
+    type: "boolean",
+    desc: "don't show the headline",
     required: false,
   },
 ];
