@@ -1,6 +1,7 @@
 <script>
   import { fade } from "svelte/transition";
   import { page } from "$app/stores";
+  import Nav from "$components/Nav.svelte";
   import "$css/reset.css";
   import "$css/styles.css";
   import "$css/prism.css";
@@ -25,35 +26,7 @@
     </div>
     <p class="title">V3 - Documentation</p>
   </div>
-  <nav class="nav">
-    <a href="/" class={$page.data.pathname === "/" ? "active" : ""}
-      >New Site Creation</a
-    >
-    <a
-      href="/development"
-      class={$page.data.pathname === "/development" ? "active" : ""}
-      >Development</a
-    >
-    <a
-      href="/deployment"
-      class={$page.data.pathname === "/deployment" ? "active" : ""}
-      >Deployment</a
-    >
-    <a
-      href="/config-options"
-      class={$page.data.pathname === "/config-options" ? "active" : ""}
-      >Config Options</a
-    >
-    <a
-      href="/testing"
-      class={$page.data.pathname === "/testing" ? "active" : ""}>Testing</a
-    >
-    <a
-      href="/troubleshooting"
-      class={$page.data.pathname === "/troubleshooting" ? "active" : ""}
-      >Troubleshooting</a
-    >
-  </nav>
+  <Nav />
 </header>
 <main>
   {#key data.pathname}
@@ -64,6 +37,12 @@
 </main>
 
 <style>
+  .notNav {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 20px;
+  }
   header {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -73,33 +52,6 @@
     padding: 20px;
     border-bottom: 1px solid var(--borderColor);
     background: var(--bgColor);
-  }
-  .notNav,
-  .nav {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 20px;
-  }
-  .nav {
-    justify-content: flex-end;
-    a {
-      color: var(--buttonBgColor);
-      transition: all 0.2s ease-in-out;
-
-      &:hover {
-        transform: scale(1.1);
-        text-decoration: none;
-        text-shadow: none;
-      }
-      &.active {
-        color: var(--secondaryColor);
-        border-bottom: 2px solid var(--secondaryColor);
-        &:hover {
-          text-decoration: none;
-        }
-      }
-    }
   }
 
   .logoContainer {

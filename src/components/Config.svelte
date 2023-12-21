@@ -7,15 +7,12 @@
 
   configDetails.sort((a, b) => {
     if (a.required && b.required) {
-      console.log("a");
       return 0;
     }
     if (a.required) {
-      console.log("b");
       return -1;
     }
     if (b.required) {
-      console.log("c");
       return 1;
     }
     return a.title.localeCompare(b.title);
