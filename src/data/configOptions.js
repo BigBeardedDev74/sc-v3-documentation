@@ -3,6 +3,7 @@ const configOptions = [
     title: "title",
     type: "string",
     desc: "Title for the page tab",
+    keywords: "meta, title, page title, tab title",
     required: true,
   },
   {
@@ -21,6 +22,7 @@ const configOptions = [
     title: "surveyType",
     type: "string",
     desc: "home services, insurance, mortgage",
+    keywords: "vertical, type, category",
     required: true,
   },
   {
@@ -292,12 +294,6 @@ const configOptions = [
     required: false,
   },
   {
-    title: "offerId",
-    type: "integer",
-    desc: "offer id from cake",
-    required: false,
-  },
-  {
     title: "useWebHooks",
     type: "boolean",
     desc: "turn web hook tracking",
@@ -382,8 +378,7 @@ const configOptions = [
     <div>Example:
     <code class="configCodeBlock">
     "skipQuestions": [
-      {
-        "OnQuestion": "PathChoice",
+      {"OnQuestion": "PathChoice",
         "IfValues": {
           "FieldName": "PathChoice",
           "DoesNotInclude": true,
@@ -394,7 +389,7 @@ const configOptions = [
         "QuestionToSkip": [
           "CashoutPurpose"
         ]
-      }
+      }    
     ]
     </code>
     </div>`,
