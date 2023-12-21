@@ -40,6 +40,11 @@
       >Deployment</a
     >
     <a
+      href="/config-options"
+      class={$page.data.pathname === "/config-options" ? "active" : ""}
+      >Config Options</a
+    >
+    <a
       href="/testing"
       class={$page.data.pathname === "/testing" ? "active" : ""}>Testing</a
     >

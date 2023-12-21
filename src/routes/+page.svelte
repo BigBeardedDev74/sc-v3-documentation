@@ -1,6 +1,6 @@
 <script>
   import Accordion from "$components/Accordion.svelte";
-  import { fly, fade } from "svelte/transition";
+  import Config from "$components/Config.svelte";
 
   import Prism from "svelte-prism";
   import configOptions from "$data/configOptions";
@@ -56,7 +56,7 @@
   <Prism source="">
     {`pnpm dev {site name}`}
   </Prism>
-  <p>-or-</p>
+  <p style="text-align: center">-or-</p>
   <Prism source="">
     {`pnpm -F {site name} dev`}
   </Prism>
@@ -141,41 +141,7 @@
 </section>
 
 <section class="section config" id="config">
-  <div class="titleContainer">
-    <h3 class="title">Config Options</h3>
-    <div class="buttonContainer">
-      <button
-        on:click={() => {
-          configDetails = configOptions;
-        }}>All</button
-      >
-      <button
-        on:click={() =>
-          (configDetails = configOptions.filter(
-            (option) => option.required === true
-          ))}>Required</button
-      >
-      <button
-        on:click={() =>
-          (configDetails = configOptions.filter(
-            (option) => option.required === false
-          ))}>Optional</button
-      >
-    </div>
-  </div>
-  {#each configDetails as option, i}
-    <div
-      in:fly={{ x: -200, duration: 25 * i }}
-      out:fly={{ x: 200, duration: 25 * i }}
-    >
-      <Accordion
-        title={option.title}
-        type={option.type}
-        desc={option.desc}
-        required={option.required}
-      />
-    </div>
-  {/each}
+  <Config />
   <h3 class="title">Config Example</h3>
   <Prism source="">
     {`{
@@ -227,36 +193,3 @@
 }`}
   </Prism>
 </section>
-
-<style lang="postcss">
-  .configs {
-    margin-left: 2rem;
-  }
-
-  .configDetails {
-    padding: 1rem;
-    border: 2px solid #ccc;
-    border-radius: 10px;
-    background: var(--bgColor);
-    margin: 0 2rem 1rem;
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
-  }
-  .titleContainer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  button {
-    margin: 0 0 0 1rem;
-    background: var(--buttonBgColor);
-    color: var(--buttonTextColor);
-    padding: 0.5rem 1rem;
-    border-radius: 5px;
-    border: none;
-    cursor: pointer;
-    transition: background 0.2s ease-in-out;
-    &:hover {
-      background: oklch(47.44% 0.077 233.06);
-    }
-  }
-</style>
