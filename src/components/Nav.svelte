@@ -89,6 +89,11 @@
   >
     <nav class="nav" in:fade={{ delay: 200 }} out:fade>
       <a href="/" class={$page.data.pathname === "/" ? "active" : ""}
+        >Config Options</a
+      >
+      <a
+        href="/new-site-creation"
+        class={$page.data.pathname === "/new-site-creation" ? "active" : ""}
         >New Site Creation</a
       >
       <a
@@ -100,11 +105,6 @@
         href="/deployment"
         class={$page.data.pathname === "/deployment" ? "active" : ""}
         >Deployment</a
-      >
-      <a
-        href="/config-options"
-        class={$page.data.pathname === "/config-options" ? "active" : ""}
-        >Config Options</a
       >
       <a
         href="/testing"
