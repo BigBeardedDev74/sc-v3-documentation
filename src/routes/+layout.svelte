@@ -1,14 +1,42 @@
 <script>
+  import { onMount } from "svelte";
   import { fade } from "svelte/transition";
-  import { page } from "$app/stores";
   import Nav from "$components/Nav.svelte";
   import "$css/reset.css";
   import "$css/styles.css";
   import "$css/prism.css";
   import "$css/prism-okaidia.css";
   import { Logo } from "$img";
+  import Toggle from "$components/ToggleButton.svelte";
+  import { theme } from "$lib/stores";
 
   export let data;
+  let isLoaded = false;
+
+  onMount(() => {
+    if (localStorage.getItem("theme") === "dark") {
+      document.body.classList.add("dark");
+      document.body.classList.remove("light");
+      theme.set("dark");
+      isLoaded = true;
+      return;
+    } else if (
+      window.matchMedia("(prefers-color-scheme: dark)").matches &&
+      localStorage.getItem("theme") !== "light"
+    ) {
+      document.body.classList.add("dark");
+      document.body.classList.remove("light");
+      theme.set("dark");
+      isLoaded = true;
+      return;
+    } else {
+      document.body.classList.remove("dark");
+      document.body.classList.add("light");
+      theme.set("light");
+      isLoaded = true;
+      return;
+    }
+  });
 </script>
 
 <svelte:head>
@@ -19,24 +47,27 @@
     rel="stylesheet"
   />
 </svelte:head>
-<header>
-  <a href="/">
-    <div class="notNav">
-      <div class="logoContainer">
-        <img src={Logo} alt="Logo" />
+{#if isLoaded}
+  <header>
+    <a href="/">
+      <div class="notNav">
+        <div class="logoContainer">
+          <img src={Logo} alt="Logo" />
+        </div>
+        <p class="title">V3 - Documentation</p>
       </div>
-      <p class="title">V3 - Documentation</p>
-    </div>
-  </a>
-  <Nav />
-</header>
-<main>
-  {#key data.pathname}
-    <div in:fade={{ duration: 150, delay: 155 }} out:fade={{ duration: 150 }}>
-      <slot />
-    </div>
-  {/key}
-</main>
+    </a>
+    <Toggle />
+    <Nav />
+  </header>
+  <main>
+    {#key data.pathname}
+      <div in:fade={{ duration: 150, delay: 155 }} out:fade={{ duration: 150 }}>
+        <slot />
+      </div>
+    {/key}
+  </main>
+{/if}
 
 <style>
   .notNav {
@@ -47,7 +78,7 @@
   }
   header {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: 1fr 80px 80px;
     gap: 30px;
     align-items: center;
     justify-content: space-between;

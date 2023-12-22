@@ -24,7 +24,7 @@
           y1="34"
           x2="46"
           y2="34"
-          stroke="black"
+          class="navClosed"
           stroke-width="8"
           stroke-linecap="round"
         />
@@ -33,7 +33,7 @@
           y1="19"
           x2="36"
           y2="19"
-          stroke="black"
+          class="navClosed"
           stroke-width="8"
           stroke-linecap="round"
         />
@@ -42,7 +42,7 @@
           y1="4"
           x2="46"
           y2="4"
-          stroke="black"
+          class="navClosed"
           stroke-width="8"
           stroke-linecap="round"
         />
@@ -60,7 +60,7 @@
           y1="4.35547"
           x2="35.3553"
           y2="34.054"
-          stroke="white"
+          class="navOpen"
           stroke-width="8"
           stroke-linecap="round"
         />
@@ -69,7 +69,7 @@
           y1="33.6986"
           x2="34.6985"
           y2="4.00013"
-          stroke="white"
+          class="navOpen"
           stroke-width="8"
           stroke-linecap="round"
         />
@@ -122,7 +122,7 @@
 <style>
   .navButtonContainer {
     position: absolute;
-    top: 30px;
+    top: 42px;
     right: 30px;
     z-index: 100;
   }
@@ -174,5 +174,11 @@
         }
       }
     }
+  }
+  .navClosed {
+    stroke: var(--textColor);
+  }
+  .navOpen {
+    stroke: #fff;
   }
 </style>

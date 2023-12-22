@@ -17,8 +17,8 @@
   --breakout-size: calc(
     (var(--breakout-max-width) - var(--content-max-width)) / 2
   );
-  /* @media (prefers-color-scheme: dark) {
-    --backgroundColor: oklch(16.84% 0 0);
+  .dark {
+    --backgroundColor: oklch(30% 0 0);
     --textColor: oklch(100% 0 0);
     --borderColor: oklch(32.11% 0 0);
     --bgColor: oklch(16.84% 0 0);
@@ -26,7 +26,7 @@
     --hoverGlow: 0 0 2px #000, 0 0 2px #000, 0 0 2px #000, 0 0 2px #000,
       0 0 15px #6db4dc, 0 0 15px #6db4dc, 0 0 15px #6db4dc, 0 0 15px #6db4dc,
       0 0 15px #6db4dc;
-  } */
+  }
 }
 body,
 html {
