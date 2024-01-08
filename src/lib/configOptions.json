@@ -1,0 +1,433 @@
+[
+  {
+    "option": "title",
+    "type": "string",
+    "desc": "Title for the page tab",
+    "keywords": "meta, title, page title, tab title",
+    "required": true
+  },
+  {
+    "option": "offerId",
+    "type": "integer",
+    "desc": "offer id from cake, this will be provided in the new site ticket",
+    "required": true
+  },
+  {
+    "option": "surveyName",
+    "type": "string",
+    "desc": "name of site (harpquiz.com)",
+    "required": true
+  },
+  {
+    "option": "surveyType",
+    "type": "string",
+    "desc": "home services, insurance, mortgage",
+    "keywords": "vertical, type, category",
+    "required": true
+  },
+  {
+    "option": "organicLink",
+    "type": "string",
+    "desc": "this needs to be created in cake based on the offer id",
+    "required": true
+  },
+  {
+    "option": "gTag",
+    "type": "string",
+    "desc": "GA 4 Tracking ID (G-XXXXXXXXXX)",
+    "required": true
+  },
+
+  {
+    "option": "gtmContainer",
+    "type": "string",
+    "desc": "GTM container you want to load: ‘GTM-TWHNRFM’",
+    "required": true
+  },
+  {
+    "option": "hiddenFields",
+    "type": "array of objects",
+    "desc": "Hidden fields you want to pass to backend. If no values are being passed, pass an empty array: <div>Example: <code class=\"configCodeBlock\"> \"hiddenFields\": [ {\"question\": \"ProjectType\", \"value\": \"Roofing\"} ] </code> </div>",
+    "required": true
+  },
+  {
+    "option": "scData",
+    "type": "object",
+    "desc": "includes 3 elements: <ul><li>siteName:string - {site name}</li><li>siteVertical:string - {sub vertical}</li><li>siteNameV2:string - current platform, ie: \"v3\"</li></ul><div>Example: <code class=\"configCodeBlock\">\"scData\": {<p class=\"codeIndent\">siteName: \"bathremodelspecialists.com\",</p><p class=\"codeIndent\">siteVertical: \"hs_br\",</p><p class=\"codeIndent\">siteNameV2: \"v3.\"}</code></div>",
+    "required": true
+  },
+  {
+    "option": "isSCLabs",
+    "type": "boolean",
+    "desc": "is the site a sclabs site",
+    "required": false
+  },
+
+  {
+    "option": "textInLogo",
+    "type": "string",
+    "desc": "add text to Logo instead of just using an image",
+    "required": false
+  },
+  {
+    "option": "showStepContainer",
+    "type": "boolean",
+    "desc": "3 step container used on mostly window sites. ‘Enter zip, add details, find pros’.",
+    "required": false
+  },
+  {
+    "option": "showHowThisWorks",
+    "type": "boolean",
+    "desc": "show how this works",
+    "required": false
+  },
+  {
+    "option": "headline",
+    "type": "string",
+    "desc": "headline you want to use",
+    "required": false
+  },
+  {
+    "option": "subHeadline",
+    "type": "string",
+    "desc": "sub headline you want to use",
+    "required": false
+  },
+  {
+    "option": "headlineInHeader",
+    "type": "boolean",
+    "desc": "show headline in the header. Default is shown in the body.",
+    "required": false
+  },
+  {
+    "option": "gutterStepper",
+    "type": "boolean",
+    "desc": "show new gutter stepper",
+    "required": false
+  },
+  {
+    "option": "stepperType",
+    "type": "string",
+    "desc": "‘mobileAndDesktopStepper’",
+    "required": false
+  },
+
+  {
+    "option": "additionalGutterSubHeadline",
+    "type": "boolean",
+    "desc": "show additional sub headline",
+    "required": false
+  },
+  {
+    "option": "dualPath",
+    "type": "boolean",
+    "desc": "site has a dual path ie. refi/purchase",
+    "required": false
+  },
+  {
+    "option": "howThisWorksLocation",
+    "type": "string",
+    "desc": "location of how this works. ‘inside form’, ‘outside form’",
+    "required": false
+  },
+  {
+    "option": "showRoofingHowThisWorks",
+    "type": "boolean",
+    "desc": "for roofing",
+    "required": false
+  },
+  {
+    "option": "showGutterInItForYou",
+    "type": "boolean",
+    "desc": "for gutters",
+    "required": false
+  },
+  {
+    "option": "keepHeadlineThroughForm",
+    "type": "boolean",
+    "desc": "keeps headline through the whole form minus final frame",
+    "required": false
+  },
+  {
+    "option": "keepHeadlineOnFinalFrame",
+    "type": "boolean",
+    "desc": "keeps headline through whole form including final frame",
+    "required": false
+  },
+  {
+    "option": "progressBar",
+    "type": "boolean",
+    "desc": "show progress bar",
+    "required": false
+  },
+  {
+    "option": "showProgressPercentage",
+    "type": "boolean",
+    "desc": "show progress bar percentage",
+    "required": false
+  },
+  {
+    "option": "progressTitle",
+    "type": "string",
+    "desc": "progress title you want shown",
+    "required": false
+  },
+  {
+    "option": "mortgageSteps",
+    "type": "boolean",
+    "desc": "new mortgage stepper",
+    "required": false
+  },
+  {
+    "option": "nextButton",
+    "type": "string",
+    "desc": "next button text",
+    "required": false
+  },
+  {
+    "option": "submitButton",
+    "type": "string",
+    "desc": "submit button text",
+    "required": false
+  },
+  {
+    "option": "buttonReverse",
+    "type": "boolean",
+    "desc": "show back button before next button",
+    "required": false
+  },
+  {
+    "option": "showNextButtonOnRadioButtons",
+    "type": "boolean",
+    "desc": "show next button when radio buttons are present.",
+    "required": false
+  },
+  {
+    "option": "backButtonOnMobileOnly",
+    "type": "boolean",
+    "desc": "show back button only on mobile",
+    "required": false
+  },
+  {
+    "option": "tcpaBeforeButton",
+    "type": "string",
+    "desc": "show TCPA before submit button. Solar",
+    "required": false
+  },
+  {
+    "option": "nextButtonIcon",
+    "type": "string",
+    "desc": "type of icon you want next to the next button: <ul><li>BackButtonCircleArrow</li><li>Chevron</li><li>ChevronThin</li><li>ChevronWide</li><li>DoubleChevron</li><li>FatArrow</li><li>ThinArrow</li><li>TriangleArrow</li></ul>",
+    "required": false
+  },
+  {
+    "option": "submitButtonIcon",
+    "type": "string",
+    "desc": "type of icon you want next to the submit button",
+    "required": false
+  },
+  {
+    "option": "backButtonIcon",
+    "type": "string",
+    "desc": "back button image instead of the word back",
+    "required": false
+  },
+  {
+    "option": "showStepsInForm",
+    "type": "boolean",
+    "desc": "question 1 of …",
+    "required": false
+  },
+  {
+    "option": "stepText",
+    "type": "string",
+    "desc": "change the word question to desired word",
+    "required": false
+  },
+  {
+    "option": "keepBackButtonOnFinalFrame",
+    "type": "boolean",
+    "desc": "show back button on final frame",
+    "required": false
+  },
+  {
+    "option": "tcpaInForm",
+    "type": "boolean",
+    "desc": "show tcpa in the form",
+    "required": false
+  },
+  {
+    "option": "anuraTrack",
+    "type": "boolean",
+    "desc": "turn Anura tracking on and off",
+    "required": false
+  },
+  {
+    "option": "useWebHooks",
+    "type": "boolean",
+    "desc": "turn web hook tracking",
+    "required": false
+  },
+  {
+    "option": "focusOnLoad",
+    "type": "boolean",
+    "desc": "place the cursor in the first input field on page load",
+    "required": false
+  },
+  {
+    "option": "YearsModelMakeSamePage",
+    "type": "boolean",
+    "desc": "for auto sites, if the year, model, make are on the same page",
+    "required": false
+  },
+  {
+    "option": "dontAdvanceRadioButtons",
+    "type": "boolean",
+    "desc": "prevents the form from advancing when a radio button is clicked, this is used if there are multiple fields on the same page",
+    "required": false
+  },
+  {
+    "option": "multiQuestionPage",
+    "type": "boolean",
+    "desc": "set to true if there are multiple questions on the same page to show page headlines instead of question headlines",
+    "required": false
+  },
+  {
+    "option": "questionLoadDelay",
+    "type": "number",
+    "desc": "number of milliseconds to delay the question load, if there are multiple questions on the same page a lower number will make the questions load faster",
+    "required": false
+  },
+  {
+    "option": "aboveHeadlineStepper",
+    "type": "boolean",
+    "desc": "will place the stepper above the headline",
+    "required": false
+  },
+  {
+    "option": "showNumbers",
+    "type": "boolean",
+    "desc": "shows numbers in the stepper",
+    "required": false
+  },
+  {
+    "option": "topStepper",
+    "type": "boolean",
+    "desc": "show stepper at the top of the page",
+    "required": false
+  },
+  {
+    "option": "simpleForm",
+    "type": "boolean",
+    "desc": "sets formData.SiteServer to 'sc-frontend-sf'",
+    "required": false
+  },
+  {
+    "option": "dynamicHeadline",
+    "type": "string",
+    "desc": "headline the uses {{city}}, {{ZipCode}} or {{state}} in it to be replaced with the users location",
+    "required": false
+  },
+  {
+    "option": "showProgressBar",
+    "type": "boolean",
+    "desc": "show progress bar",
+    "required": false
+  },
+  {
+    "option": "showPercentage",
+    "type": "boolean",
+    "desc": "show percentage complete on the progress bar",
+    "required": false
+  },
+  {
+    "option": "skipQuestions",
+    "type": "object",
+    "desc": "Skips questions based on the answer to another question: <div>Example: <code class=\"configCodeBlock\"> \"skipQuestions\": [ {\"OnQuestion\": \"PathChoice\", \"IfValues\": { \"FieldName\": \"PathChoice\", \"DoesNotInclude\": true \"Values\": [ \"refi\" ] }, \"QuestionToSkip\": [ \"CashoutPurpose\" ] } ] </code> </div>",
+    "required": false
+  },
+  {
+    "option": "noWeightAndHeight",
+    "type": "boolean",
+    "desc": "sets default weight and height based on gender in buildLead",
+    "required": false
+  },
+  {
+    "option": "autoscroll",
+    "type": "boolean",
+    "desc": "autoscroll to show the first 3 lines of the TCPA",
+    "required": false
+  },
+  {
+    "option": "isMediaAlpha",
+    "type": "boolean",
+    "desc": "site uses MediaAlpha",
+    "required": false
+  },
+  {
+    "option": "allowSkipBirthday",
+    "type": "boolean",
+    "desc": "let's the user skip the birthday question",
+    "required": false
+  },
+  {
+    "option": "persistentMessage",
+    "type": "string",
+    "desc": "message that will be shown on every page",
+    "required": false
+  },
+  {
+    "option": "medMessage",
+    "type": "string",
+    "desc": "message that will be shown on every page for med sites",
+    "required": false
+  },
+  {
+    "option": "additionalFooterText",
+    "type": "string",
+    "desc": "additional footer text to be displayed between the disclosure and the links",
+    "required": false
+  },
+  {
+    "option": "ffHeadline",
+    "type": "string",
+    "desc": "headline for the final frame",
+    "required": false
+  },
+  {
+    "option": "referenceLink",
+    "type": "string",
+    "desc": "additional link to be displayed in the footer",
+    "required": false
+  },
+  {
+    "option": "priceByState",
+    "type": "boolean",
+    "desc": "makes api call to get the average home price by state",
+    "required": false
+  },
+  {
+    "option": "displayEquityCashout",
+    "type": "boolean",
+    "desc": "replace $5000 on CashNeeded question with the users equity",
+    "required": false
+  },
+  {
+    "option": "MortFirst",
+    "type": "boolean",
+    "desc": "set to true if the MortgageAmount question is before the EstimatedPropertyValue question",
+    "required": false
+  },
+  {
+    "option": "combinedMortAndPropVal",
+    "type": "boolean",
+    "desc": "set to true if MortgageAmount and EstimatedPropertyValue are on the same frame",
+    "required": false
+  },
+  {
+    "option": "hideHeadline",
+    "type": "boolean",
+    "desc": "don't show the headline",
+    "required": false
+  }
+]
