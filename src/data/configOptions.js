@@ -479,5 +479,11 @@ const configOptions = [
     desc: "don't show the headline",
     required: false,
   },
+  {
+    title: "reverseMortgageSite",
+    type: "boolean",
+    desc: "is a reverse mortgage site - set to redirect after credit on purchase path",
+    required: false,
+  },
 ];
 export default configOptions;

@@ -23,7 +23,7 @@
     unsubscribe();
   });
 
-  configDetails.sort((a, b) => {
+  $: updatedConfigDetails.sort((a, b) => {
     if (a.required && b.required) {
       return 0;
     }
