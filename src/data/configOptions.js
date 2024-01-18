@@ -160,7 +160,13 @@ const configOptions = [
   {
     title: "showGutterInItForYou",
     type: "boolean",
-    desc: "for gutters",
+    desc: "Show 'What's in it for you' section under the form.  Requires 'bulletPoints' to be set on +page.svelte",
+    required: false,
+  },
+  {
+    title: "showInItForYou",
+    type: "boolean",
+    desc: "Show 'What's in it for you' section under the form.  Requires 'bulletPoints' to be set on +page.svelte",
     required: false,
   },
   {
