@@ -474,6 +474,12 @@ const configOptions = [
     required: false,
   },
   {
+    title: "ElectricBillButtonsByState",
+    type: "boolean",
+    desc: "for solar sites, use buttons instead of a slider for select states",
+    required: false,
+  },
+  {
     title: "combinedMortAndPropVal",
     type: "boolean",
     desc: "set to true if MortgageAmount and EstimatedPropertyValue are on the same frame",
