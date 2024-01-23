@@ -34,6 +34,7 @@ html {
   font-size: 18px;
   background: var(--backgroundColor);
   color: var(--textColor);
+  min-height: 100vh;
 }
 .configCodeBlock {
   display: block;
