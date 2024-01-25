@@ -7,27 +7,36 @@
     "build": "vite build",
     "preview": "vite preview",
     "check": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json",
-    "check:watch": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json --watch"
+    "check:watch": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json --watch",
+    "migrate": "tsx ./migrate.ts"
   },
   "devDependencies": {
     "@sveltejs/adapter-auto": "^2.0.0",
     "@sveltejs/kit": "^1.20.4",
     "autoprefixer": "^10.4.16",
+    "drizzle-kit": "^0.20.13",
     "postcss": "^8.4.31",
     "postcss-load-config": "^4.0.1",
     "postcss-nested": "^6.0.1",
     "postcss-preset-env": "^9.3.0",
+    "postgres": "^3.4.3",
     "prismjs": "^1.29.0",
     "svelte": "^4.0.5",
     "svelte-check": "^3.4.3",
     "svelte-preprocess": "^5.0.4",
     "svelte-prism": "^1.1.6",
+    "tsx": "^4.7.0",
     "typescript": "^5.0.0",
     "vite": "^4.4.2"
   },
   "type": "module",
   "dependencies": {
+    "@neondatabase/serverless": "^0.7.2",
     "cssnano": "^6.0.1",
-    "flexsearch": "^0.7.31"
+    "dotenv": "^16.4.1",
+    "drizzle-orm": "^0.29.3",
+    "flexsearch": "^0.7.31",
+    "mysql2": "^3.8.0",
+    "pg": "^8.11.3"
   }
 }
