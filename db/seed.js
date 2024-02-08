@@ -19,8 +19,6 @@ const main = async () => {
     data.push(option);
   }
 
-  console.log("db", db);
-
   console.log("Seed start");
   await db.insert(ConfigOptions).values(data);
   console.log("Seed done");

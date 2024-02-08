@@ -1,6 +1,6 @@
 import { defineConfig } from "drizzle-kit";
-import dotenv from "dotenv";
-dotenv.config();
+import "dotenv/config";
+
 export default defineConfig({
   schema: "./db/schema.ts",
   driver: "pg",
