@@ -182,12 +182,6 @@ const configOptions = [
     required: false,
   },
   {
-    title: "progressBar",
-    type: "boolean",
-    desc: "show progress bar",
-    required: false,
-  },
-  {
     title: "showProgressPercentage",
     type: "boolean",
     desc: "show progress bar percentage",
