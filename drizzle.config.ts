@@ -6,7 +6,7 @@ export default defineConfig({
   driver: "pg",
   out: "./db",
   dbCredentials: {
-    connectionString: process.env.DB_URL,
+    connectionString: process.env.NEON_DB_URL,
   },
   verbose: true,
   strict: true,
