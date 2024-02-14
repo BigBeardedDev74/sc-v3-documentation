@@ -491,5 +491,11 @@ const configOptions = [
     desc: "is a reverse mortgage site - set to redirect after credit on purchase path",
     required: false,
   },
+  {
+    title: "isLemonade",
+    type: "boolean",
+    desc: "adds the lemonade logo to the HasRentersInsuranceDesire question for auto insurance sites",
+    required: false,
+  },
 ];
 export default configOptions;
