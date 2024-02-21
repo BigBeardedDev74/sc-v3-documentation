@@ -23,6 +23,22 @@
       target="_blank">localhost:3000</a
     >. The site will automatically reload as you make changes to the code.
   </p>
+  <p>
+    If you are making changes to and of the packages, questions, components,
+    api, thankyou, stores or utils, you will need to repackage when you make a
+    change.
+  </p>
+  <Prism source="">
+    {`pnpm -F questions package`}
+  </Prism>
+  <p>Substitute the appropriate package name for <em>questions</em></p>
+
+  <p>
+    Alternatively, you can watch a package if you are making multiple changes
+  </p>
+  <Prism source="">
+    {`pnpm -F questions package:watch`}
+  </Prism>
 </section>
 <section class="section">
   <h3 class="title">CSS Changes</h3>
