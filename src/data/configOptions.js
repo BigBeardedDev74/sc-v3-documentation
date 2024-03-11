@@ -497,5 +497,11 @@ const configOptions = [
     desc: "adds the lemonade logo to the HasRentersInsuranceDesire question for auto insurance sites",
     required: false,
   },
+  {
+    title: "slideAnimation",
+    type: "boolean",
+    desc: "slide the frames in and out rather than fade",
+    required: false,
+  },
 ];
 export default configOptions;
