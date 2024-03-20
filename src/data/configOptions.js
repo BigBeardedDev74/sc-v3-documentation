@@ -503,5 +503,35 @@ const configOptions = [
     desc: "slide the frames in and out rather than fade",
     required: false,
   },
+  {
+    title: "localeImg",
+    type: "boolean",
+    desc: "shows the pin icon on the ZIP code question",
+    required: false,
+  },
+  {
+    title: "homeownerCheckbox",
+    type: "boolean",
+    desc: "adds a checkbox to the Address field for the OwnHome field instead of asking the question",
+    required: false,
+  },
+  {
+    title: "tcpaInMain",
+    type: "boolean",
+    desc: "displays the TCPA in the main container not in the form container",
+    required: false,
+  },
+  {
+    title: "beforeAndAfter",
+    type: "boolean",
+    desc: "adds before and after image to the main page",
+    required: false,
+  },
+  {
+    title: "CashNeededAmount5k",
+    type: "boolean",
+    desc: "passes the CashNeededAmount as the 5000 rather than the equity amount",
+    required: false,
+  },
 ];
 export default configOptions;
