@@ -4,445 +4,445 @@
     "type": "string",
     "desc": "Title for the page tab",
     "keywords": "meta, title, page title, tab title",
-    "required": true
+    "required": 1
   },
   {
     "title": "offerId",
     "type": "integer",
     "desc": "offer id from cake, this will be provided in the new site ticket",
-    "required": true
+    "required": 1
   },
   {
     "title": "surveyName",
     "type": "string",
     "desc": "name of site (harpquiz.com)",
-    "required": true
+    "required": 1
   },
   {
     "title": "surveyType",
     "type": "string",
     "desc": "home services, insurance, mortgage",
     "keywords": "vertical, type, category",
-    "required": true
+    "required": 1
   },
   {
     "title": "organicLink",
     "type": "string",
     "desc": "this needs to be created in cake based on the offer id",
-    "required": true
+    "required": 1
   },
   {
     "title": "gTag",
     "type": "string",
     "desc": "GA 4 Tracking ID (G-XXXXXXXXXX)",
-    "required": true
+    "required": 1
   },
   {
     "title": "gtmContainer",
     "type": "string",
     "desc": "GTM container you want to load: ‘GTM-TWHNRFM’",
-    "required": true
+    "required": 1
   },
   {
     "title": "hiddenFields",
     "type": "array of objects",
     "desc": "Hidden fields you want to pass to backend. If no values are being passed, pass an empty array: \n      <div>Example:\n      <code class=\"configCodeBlock\">\n      \"hiddenFields\": [\n        {\"question\": \"ProjectType\", \"value\": \"Roofing\"}\n        ]\n      </code>\n      </div>",
-    "required": true
+    "required": 1
   },
   {
     "title": "scData",
     "type": "object",
     "desc": "includes 3 elements: \n      <ul>\n        <li>siteName:string - {site name}</li> \n        <li>siteVertical:string - {sub vertical}</li>\n        <li>siteNameV2:string - current platform, ie: \"v3\"</li>\n      </ul>\n      <div>Example: \n      <code class=\"configCodeBlock\">\n      \"scData\": {\n        <p class=\"codeIndent\">siteName: \"bathremodelspecialists.com\",</p>\n        <p class=\"codeIndent\">siteVertical: \"hs_br\",</p>\n        <p class=\"codeIndent\">siteNameV2: \"v3.\"</p>}\n      </code>\n      </div>\n      ",
-    "required": true
+    "required": 1
   },
   {
     "title": "isSCLabs",
     "type": "boolean",
     "desc": "is the site a sclabs site",
-    "required": false
+    "required": 0
   },
   {
     "title": "textInLogo",
     "type": "string",
     "desc": "add text to Logo instead of just using an image",
-    "required": false
+    "required": 0
   },
   {
     "title": "showStepContainer",
     "type": "boolean",
     "desc": "3 step container used on mostly window sites. ‘Enter zip, add details, find pros’.",
-    "required": false
+    "required": 0
   },
   {
     "title": "showHowThisWorks",
     "type": "boolean",
     "desc": "show how this works",
-    "required": false
+    "required": 0
   },
   {
     "title": "headline",
     "type": "string",
     "desc": "headline you want to use",
-    "required": false
+    "required": 0
   },
   {
     "title": "subHeadline",
     "type": "string",
     "desc": "sub headline you want to use",
-    "required": false
+    "required": 0
   },
   {
     "title": "headlineInHeader",
     "type": "boolean",
     "desc": "show headline in the header. Default is shown in the body.",
-    "required": false
+    "required": 0
   },
   {
     "title": "gutterStepper",
     "type": "boolean",
     "desc": "show new gutter stepper",
-    "required": false
+    "required": 0
   },
   {
     "title": "stepperType",
     "type": "string",
     "desc": "‘mobileAndDesktopStepper’",
-    "required": false
+    "required": 0
   },
   {
     "title": "additionalGutterSubHeadline",
     "type": "boolean",
     "desc": "show additional sub headline",
-    "required": false
+    "required": 0
   },
   {
     "title": "dualPath",
     "type": "boolean",
     "desc": "site has a dual path ie. refi/purchase",
-    "required": false
+    "required": 0
   },
   {
     "title": "howThisWorksLocation",
     "type": "string",
     "desc": "location of how this works. ‘inside form’, ‘outside form’",
-    "required": false
+    "required": 0
   },
   {
     "title": "showRoofingHowThisWorks",
     "type": "boolean",
     "desc": "for roofing",
-    "required": false
+    "required": 0
   },
   {
     "title": "showGutterInItForYou",
     "type": "boolean",
     "desc": "Show 'What's in it for you' section under the form.  Requires 'bulletPoints' to be set on +page.svelte",
-    "required": false
+    "required": 0
   },
   {
     "title": "showInItForYou",
     "type": "boolean",
     "desc": "Show 'What's in it for you' section under the form.  Requires 'bulletPoints' to be set on +page.svelte",
-    "required": false
+    "required": 0
   },
   {
     "title": "keepHeadlineThroughForm",
     "type": "boolean",
     "desc": "keeps headline through the whole form minus final frame",
-    "required": false
+    "required": 0
   },
   {
     "title": "keepHeadlineOnFinalFrame",
     "type": "boolean",
     "desc": "keeps headline through whole form including final frame",
-    "required": false
+    "required": 0
   },
   {
     "title": "progressBar",
     "type": "boolean",
     "desc": "show progress bar",
-    "required": false
+    "required": 0
   },
   {
     "title": "showProgressPercentage",
     "type": "boolean",
     "desc": "show progress bar percentage",
-    "required": false
+    "required": 0
   },
   {
     "title": "progressTitle",
     "type": "string",
     "desc": "progress title you want shown",
-    "required": false
+    "required": 0
   },
   {
     "title": "mortgageSteps",
     "type": "boolean",
     "desc": "new mortgage stepper",
-    "required": false
+    "required": 0
   },
   {
     "title": "nextButton",
     "type": "string",
     "desc": "next button text",
-    "required": false
+    "required": 0
   },
   {
     "title": "submitButton",
     "type": "string",
     "desc": "submit button text",
-    "required": false
+    "required": 0
   },
   {
     "title": "buttonReverse",
     "type": "boolean",
     "desc": "show back button before next button",
-    "required": false
+    "required": 0
   },
   {
     "title": "showNextButtonOnRadioButtons",
     "type": "boolean",
     "desc": "show next button when radio buttons are present.",
-    "required": false
+    "required": 0
   },
   {
     "title": "backButtonOnMobileOnly",
     "type": "boolean",
     "desc": "show back button only on mobile",
-    "required": false
+    "required": 0
   },
   {
     "title": "tcpaBeforeButton",
     "type": "string",
     "desc": "show TCPA before submit button. Solar",
-    "required": false
+    "required": 0
   },
   {
     "title": "nextButtonIcon",
     "type": "string",
     "desc": "type of icon you want next to the next button:\n      <ul>\n        <li>BackButtonCircleArrow</li>\n        <li>Chevron</li>\n        <li>ChevronThin</li>\n        <li>ChevronWide</li>\n        <li>DoubleChevron</li>\n        <li>FatArrow</li>\n        <li>ThinArrow</li>\n        <li>TriangleArrow</li>\n      </ul> ",
-    "required": false
+    "required": 0
   },
   {
     "title": "submitButtonIcon",
     "type": "string",
     "desc": "type of icon you want next to the submit button",
-    "required": false
+    "required": 0
   },
   {
     "title": "backButtonIcon",
     "type": "string",
     "desc": "back button image instead of the word back",
-    "required": false
+    "required": 0
   },
   {
     "title": "showStepsInForm",
     "type": "boolean",
     "desc": "question 1 of …",
-    "required": false
+    "required": 0
   },
   {
     "title": "stepText",
     "type": "string",
     "desc": "change the word question to desired word",
-    "required": false
+    "required": 0
   },
   {
     "title": "keepBackButtonOnFinalFrame",
     "type": "boolean",
     "desc": "show back button on final frame",
-    "required": false
+    "required": 0
   },
   {
     "title": "tcpaInForm",
     "type": "boolean",
     "desc": "show tcpa in the form",
-    "required": false
+    "required": 0
   },
   {
     "title": "anuraTrack",
     "type": "boolean",
     "desc": "turn Anura tracking on and off",
-    "required": false
+    "required": 0
   },
   {
     "title": "useWebHooks",
     "type": "boolean",
     "desc": "turn web hook tracking",
-    "required": false
+    "required": 0
   },
   {
     "title": "focusOnLoad",
     "type": "boolean",
     "desc": "place the cursor in the first input field on page load",
-    "required": false
+    "required": 0
   },
   {
     "title": "YearsModelMakeSamePage",
     "type": "boolean",
     "desc": "for auto sites, if the year, model, make are on the same page",
-    "required": false
+    "required": 0
   },
   {
     "title": "dontAdvanceRadioButtons",
     "type": "boolean",
     "desc": "prevents the form from advancing when a radio button is clicked, this is used if there are multiple fields on the same page",
-    "required": false
+    "required": 0
   },
   {
     "title": "multiQuestionPage",
     "type": "boolean",
     "desc": "set to true if there are multiple questions on the same page to show page headlines instead of question headlines",
-    "required": false
+    "required": 0
   },
   {
     "title": "questionLoadDelay",
     "type": "number",
     "desc": "number of milliseconds to delay the question load, if there are multiple questions on the same page a lower number will make the questions load faster",
-    "required": false
+    "required": 0
   },
   {
     "title": "aboveHeadlineStepper",
     "type": "boolean",
     "desc": "will place the stepper above the headline",
-    "required": false
+    "required": 0
   },
   {
     "title": "showNumbers",
     "type": "boolean",
     "desc": "shows numbers in the stepper",
-    "required": false
+    "required": 0
   },
   {
     "title": "topStepper",
     "type": "boolean",
     "desc": "show stepper at the top of the page",
-    "required": false
+    "required": 0
   },
   {
     "title": "simpleForm",
     "type": "boolean",
     "desc": "sets formData.SiteServer to 'sc-frontend-sf'",
-    "required": false
+    "required": 0
   },
   {
     "title": "dynamicHeadline",
     "type": "string",
     "desc": "headline the uses {{city}}, {{ZipCode}} or {{state}} in it to be replaced with the users location",
-    "required": false
+    "required": 0
   },
   {
     "title": "showProgressBar",
     "type": "boolean",
     "desc": "show progress bar",
-    "required": false
+    "required": 0
   },
   {
     "title": "showPercentage",
     "type": "boolean",
     "desc": "show percentage complete on the progress bar",
-    "required": false
+    "required": 0
   },
   {
     "title": "skipQuestions",
     "type": "object",
     "desc": "Skips questions based on the answer to another question: \n    <div>Example:\n    <code class=\"configCodeBlock\">\n    \"skipQuestions\": [\n      {\"OnQuestion\": \"PathChoice\",\n        \"IfValues\": {\n          \"FieldName\": \"PathChoice\",\n          \"DoesNotInclude\": true,\n          \"Values\": [\n            \"refi\"\n          ]\n        },\n        \"QuestionToSkip\": [\n          \"CashoutPurpose\"\n        ]\n      }    \n    ]\n    </code>\n    </div>",
-    "required": false
+    "required": 0
   },
   {
     "title": "noWeightAndHeight",
     "type": "boolean",
     "desc": "sets default weight and height based on gender in buildLead",
-    "required": false
+    "required": 0
   },
   {
     "title": "autoscroll",
     "type": "boolean",
     "desc": "autoscroll to show the first 3 lines of the TCPA",
-    "required": false
+    "required": 0
   },
   {
     "title": "isMediaAlpha",
     "type": "boolean",
     "desc": "site uses MediaAlpha",
-    "required": false
+    "required": 0
   },
   {
     "title": "allowSkipBirthday",
     "type": "boolean",
     "desc": "let's the user skip the birthday question",
-    "required": false
+    "required": 0
   },
   {
     "title": "persistentMessage",
     "type": "string",
     "desc": "message that will be shown on every page",
-    "required": false
+    "required": 0
   },
   {
     "title": "medMessage",
     "type": "string",
     "desc": "message that will be shown on every page for med sites",
-    "required": false
+    "required": 0
   },
   {
     "title": "additionalFooterText",
     "type": "string",
     "desc": "additional footer text to be displayed between the disclosure and the links",
-    "required": false
+    "required": 0
   },
   {
     "title": "ffHeadline",
     "type": "string",
     "desc": "headline for the final frame",
-    "required": false
+    "required": 0
   },
   {
     "title": "referenceLink",
     "type": "string",
     "desc": "additional link to be displayed in the footer",
-    "required": false
+    "required": 0
   },
   {
     "title": "priceByState",
     "type": "boolean",
     "desc": "makes api call to get the average home price by state",
-    "required": false
+    "required": 0
   },
   {
     "title": "displayEquityCashout",
     "type": "boolean",
     "desc": "replace $5000 on CashNeeded question with the users equity",
-    "required": false
+    "required": 0
   },
   {
     "title": "MortFirst",
     "type": "boolean",
     "desc": "set to true if the MortgageAmount question is before the EstimatedPropertyValue question",
-    "required": false
+    "required": 0
   },
   {
     "title": "ElectricBillButtonsByState",
     "type": "boolean",
     "desc": "for solar sites, use buttons instead of a slider for select states",
-    "required": false
+    "required": 0
   },
   {
     "title": "combinedMortAndPropVal",
     "type": "boolean",
     "desc": "set to true if MortgageAmount and EstimatedPropertyValue are on the same frame",
-    "required": false
+    "required": 0
   },
   {
     "title": "hideHeadline",
     "type": "boolean",
     "desc": "don't show the headline",
-    "required": false
+    "required": 0
   },
   {
     "title": "reverseMortgageSite",
     "type": "boolean",
     "desc": "is a reverse mortgage site - set to redirect after credit on purchase path",
-    "required": false
+    "required": 0
   }
 ]
