@@ -444,5 +444,47 @@
     "type": "boolean",
     "desc": "is a reverse mortgage site - set to redirect after credit on purchase path",
     "required": 0
+  },
+  {
+    "title": "isLemonade",
+    "type": "boolean",
+    "desc": "adds the lemonade logo to the HasRentersInsuranceDesire question for auto insurance sites",
+    "required": 0
+  },
+  {
+    "title": "slideAnimation",
+    "type": "boolean",
+    "desc": "slide the frames in and out rather than fade",
+    "required": 0
+  },
+  {
+    "title": "localeImg",
+    "type": "boolean",
+    "desc": "shows the pin icon on the ZIP code question",
+    "required": 0
+  },
+  {
+    "title": "homeownerCheckbox",
+    "type": "boolean",
+    "desc": "adds a checkbox to the Address field for the OwnHome field instead of asking the question",
+    "required": 0
+  },
+  {
+    "title": "tcpaInMain",
+    "type": "boolean",
+    "desc": "displays the TCPA in the main container not in the form container",
+    "required": 0
+  },
+  {
+    "title": "beforeAndAfter",
+    "type": "boolean",
+    "desc": "adds before and after image to the main page",
+    "required": 0
+  },
+  {
+    "title": "CashNeededAmount5k",
+    "type": "boolean",
+    "desc": "passes the CashNeededAmount as the 5000 rather than the equity amount",
+    "required": 0
   }
 ]
