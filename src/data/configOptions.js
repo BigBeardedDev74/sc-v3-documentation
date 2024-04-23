@@ -533,5 +533,11 @@ const configOptions = [
     desc: "passes the CashNeededAmount as the 5000 rather than the equity amount",
     required: false,
   },
+  {
+    title: "reverseYears",
+    type: "boolean",
+    desc: "reverses the years in the birth date dropdown",
+    required: false,
+  },
 ];
 export default configOptions;
