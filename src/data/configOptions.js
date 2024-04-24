@@ -539,5 +539,11 @@ const configOptions = [
     desc: "reverses the years in the birth date dropdown",
     required: false,
   },
+  {
+    title: "toolTip",
+    type: "boolean",
+    desc: "adds 'SEE LIST' to the HasConditions and HasLifeEvents questions which trigger a tooltip with the list of conditions and events",
+    required: false,
+  },
 ];
 export default configOptions;
