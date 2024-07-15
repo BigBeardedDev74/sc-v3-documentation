@@ -545,5 +545,23 @@ const configOptions = [
     desc: "adds 'SEE LIST' to the HasConditions and HasLifeEvents questions which trigger a tooltip with the list of conditions and events",
     required: false,
   },
+  {
+    title: "FccLottieSpeed",
+    type: "number",
+    desc: "Used for the FCC interstitial lottie animation.  1 is the default, to speed up the animation increase the number.  2 is twice as fast.  0.5 is half as fast.",
+    required: false,
+  },
+  {
+    title: "FccInterstitialSpeed",
+    type: "number",
+    desc: "Used for the FCC interstitial to set the time before the frame advances.  Use milliseconds. ",
+    required: false,
+  },
+  {
+    title: "FccAnimation",
+    type: "string",
+    desc: "<ul><li>HealthAnimation</li> <li>WindowAnimation</li> <li>DpsAnimation</li> <li>BathAnimation</li> <li>MoneyHouseAnimation</li> <li>SolarAnimation</li></ul>",
+    required: false,
+  },
 ];
 export default configOptions;
