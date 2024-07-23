@@ -1,11 +1,11 @@
 <script>
   import Accordion from "$components/Accordion.svelte";
-  import configOptions from "$data/configOptions";
+  // import configOptions from "$data/configOptions";
   import { fly, fade } from "svelte/transition";
   import { createSearchStore, searchHandler } from "$lib/search";
   import { onDestroy } from "svelte";
 
-  let configDetails = configOptions;
+  export let configDetails;
 
   configDetails = configDetails.map((option) => {
     let searchTerms = `${option?.title} ${option?.desc} ${option?.keywords}`;
@@ -63,15 +63,15 @@
     <button
       on:click={() =>
         (updatedConfigDetails = $searchStore.filtered.filter(
-          (/** @type {{ required: boolean; }} */ option) =>
-            option.required === true
+          (/** @type {{ required: number | boolean; }} */ option) =>
+            option.required === 1 || option.required === true
         ))}>Required</button
     >
     <button
       on:click={() =>
         (updatedConfigDetails = $searchStore.filtered.filter(
-          (/** @type {{ required: boolean; }} */ option) =>
-            option.required === false
+          (/** @type {{ required: number | boolean; }} */ option) =>
+            option.required === 0 || option.required === false
         ))}>Optional</button
     >
   </div>
