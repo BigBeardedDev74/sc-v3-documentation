@@ -11,6 +11,9 @@
   --primaryColor: oklch(40.12% 0.076 230.01);
   --secondaryColor: oklch(63.6% 0.131 162.58);
 
+  --toastSuccessColor: oklch(81.62% 0.148 142.5);
+  --toastErrorColor: oklch(62.79% 0.146 20.65);
+
   --padding-inline: 1rem;
   --content-max-width: 1170px;
   --breakout-max-width: 1350px;
@@ -18,6 +21,7 @@
     (var(--breakout-max-width) - var(--content-max-width)) / 2
   );
   --errorColor: #a00;
+  --toastOpacity: 0.9;
   .dark {
     --backgroundColor: oklch(30% 0 0);
     --textColor: oklch(100% 0 0);
@@ -82,4 +86,14 @@ a {
   width: 100%;
   text-align: left;
   border-bottom: 1px solid #ccc;
+}
+
+.success {
+  background-color: var(--toastSuccessColor);
+}
+.failure {
+  background-color: var(--toastErrorColor);
+}
+.hide {
+  --toastOpacity: 0;
 }

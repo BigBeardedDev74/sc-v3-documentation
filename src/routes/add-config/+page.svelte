@@ -1,5 +1,10 @@
 <script>
+  export let data;
   import Toast from "$components/Toast.svelte";
+
+  const configOptions = data.configOptions;
+
+  const titles = configOptions.map((option) => option.title.toLowerCase());
 
   let fields = {
     title: "",
@@ -8,7 +13,7 @@
     required: "0",
     keywords: "",
   };
-  $: showPopover = true;
+  $: showPopover = false;
 
   let errors = { title: "", desc: "" };
 
@@ -20,6 +25,8 @@
       case "title":
         if (value.length < 2) {
           errors.title = "You must enter a title";
+        } else if (titles.includes(value.toLowerCase())) {
+          errors.title = "This title already exists";
         } else {
           errors.title = "";
         }
@@ -43,6 +50,9 @@
     if (fields.title.length < 2) {
       formIsValid = false;
       errors.title = "You must enter a title";
+    } else if (titles.includes(fields.title.toLowerCase())) {
+      formIsValid = false;
+      errors.title = "This title already exists";
     } else {
       errors.title = "";
     }
@@ -75,9 +85,7 @@
   };
 </script>
 
-{#if showPopover}
-  <Toast {showPopover} message="BAM!! New Config Added!" />
-{/if}
+<Toast {showPopover} message="🏁 --- BAM!! New Config Added! --- 🏁" />
 
 <section class="section">
   <h3 class="title">Add a New Config Option</h3>
