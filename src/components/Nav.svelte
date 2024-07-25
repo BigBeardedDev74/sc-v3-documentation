@@ -9,7 +9,7 @@
   };
 </script>
 
-<div class="navButtonContainer">
+<!-- <div class="navButtonContainer">
   <button on:click={clickHandler} class="navButton">
     {#if !showNav}
       <svg
@@ -76,48 +76,38 @@
       </svg>
     {/if}
   </button>
-</div>
+</div> -->
 
-{#if showNav}
-  <!-- svelte-ignore a11y-interactive-supports-focus -->
-  <!-- svelte-ignore a11y-click-events-have-key-events -->
-  <div
-    class="navWrapper"
-    on:click={clickHandler}
-    role="button"
-    transition:slide
+<!-- svelte-ignore a11y-interactive-supports-focus -->
+<!-- svelte-ignore a11y-click-events-have-key-events -->
+
+<nav class="nav" in:fade={{ delay: 200 }} out:fade>
+  <a href="/" class={$page.data.pathname === "/" ? "active" : ""}
+    >Config Options</a
   >
-    <nav class="nav" in:fade={{ delay: 200 }} out:fade>
-      <a href="/" class={$page.data.pathname === "/" ? "active" : ""}
-        >Config Options</a
-      >
-      <a
-        href="/new-site-creation"
-        class={$page.data.pathname === "/new-site-creation" ? "active" : ""}
-        >New Site Creation</a
-      >
-      <a
-        href="/development"
-        class={$page.data.pathname === "/development" ? "active" : ""}
-        >Development</a
-      >
-      <a
-        href="/deployment"
-        class={$page.data.pathname === "/deployment" ? "active" : ""}
-        >Deployment</a
-      >
-      <a
-        href="/testing"
-        class={$page.data.pathname === "/testing" ? "active" : ""}>Testing</a
-      >
-      <a
-        href="/troubleshooting"
-        class={$page.data.pathname === "/troubleshooting" ? "active" : ""}
-        >Troubleshooting</a
-      >
-    </nav>
-  </div>
-{/if}
+  <a
+    href="/new-site-creation"
+    class={$page.data.pathname === "/new-site-creation" ? "active" : ""}
+    >New Site Creation</a
+  >
+  <a
+    href="/development"
+    class={$page.data.pathname === "/development" ? "active" : ""}
+    >Development</a
+  >
+  <a
+    href="/deployment"
+    class={$page.data.pathname === "/deployment" ? "active" : ""}>Deployment</a
+  >
+  <a href="/testing" class={$page.data.pathname === "/testing" ? "active" : ""}
+    >Testing</a
+  >
+  <a
+    href="/add-config"
+    class={$page.data.pathname === "/add-config" ? "active" : ""}
+    >Add Config Option</a
+  >
+</nav>
 
 <style>
   .navButtonContainer {
@@ -146,20 +136,21 @@
   }
   .nav {
     width: calc(100% - 40px);
-    max-width: 900px;
+
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(430px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
     align-items: center;
     gap: 20px;
   }
   .nav {
-    justify-content: flex-end;
+    grid-column: 1 / -1;
     a {
       color: #fff;
-      font-size: clamp(28px, 3.5vw, 40px);
-      font-weight: 900;
+      font-size: clamp(16px, 2vw, 20px);
+      font-weight: 600;
       text-transform: uppercase;
       transition: all 0.2s ease-in-out;
+      text-align: center;
 
       &:hover {
         transform: scale(1.1);

@@ -11,6 +11,9 @@ importers:
       '@auth/drizzle-adapter':
         specifier: ^1.4.1
         version: 1.4.1
+      '@auth/sveltekit':
+        specifier: ^1.4.1
+        version: 1.4.1(@sveltejs/kit@1.30.4(svelte@4.2.18)(vite@4.5.3(@types/node@20.14.11)))(svelte@4.2.18)
       '@neondatabase/serverless':
         specifier: ^0.7.2
         version: 0.7.2
@@ -110,6 +113,22 @@ packages:
 
   '@auth/drizzle-adapter@1.4.1':
     resolution: {integrity: sha512-pUC8D0jfANDvThH1CrcUXmjZyF98ccVMY3iEZUQzUTr0U1csuppvRoz5JccOLzjv3tu+Nb9Qd6SvrmmsnuYgSw==}
+
+  '@auth/sveltekit@1.4.1':
+    resolution: {integrity: sha512-oIt/eFoYJhsH6Tz625NIfctz5CFxTn1PNrl9FxlDB+S1j4Qli/LRF9hS5Ad24056keKSApXx9o61aQANDsrXLQ==}
+    peerDependencies:
+      '@simplewebauthn/browser': ^9.0.1
+      '@simplewebauthn/server': ^9.0.3
+      '@sveltejs/kit': ^1.0.0 || ^2.0.0
+      nodemailer: ^6.6.5
+      svelte: ^3.54.0 || ^4.0.0 || ^5
+    peerDependenciesMeta:
+      '@simplewebauthn/browser':
+        optional: true
+      '@simplewebauthn/server':
+        optional: true
+      nodemailer:
+        optional: true
 
   '@csstools/cascade-layer-name-parser@1.0.13':
     resolution: {integrity: sha512-MX0yLTwtZzr82sQ0zOjqimpZbzjMaK/h2pmlrLK7DCzlmiZLYFpoO94WmN1akRVo6ll/TdpHb53vihHLUMyvng==}
@@ -2029,6 +2048,13 @@ snapshots:
       - '@simplewebauthn/browser'
       - '@simplewebauthn/server'
       - nodemailer
+
+  '@auth/sveltekit@1.4.1(@sveltejs/kit@1.30.4(svelte@4.2.18)(vite@4.5.3(@types/node@20.14.11)))(svelte@4.2.18)':
+    dependencies:
+      '@auth/core': 0.34.1
+      '@sveltejs/kit': 1.30.4(svelte@4.2.18)(vite@4.5.3(@types/node@20.14.11))
+      set-cookie-parser: 2.6.0
+      svelte: 4.2.18
 
   '@csstools/cascade-layer-name-parser@1.0.13(@csstools/css-parser-algorithms@2.7.1(@csstools/css-tokenizer@2.4.1))(@csstools/css-tokenizer@2.4.1)':
     dependencies:

@@ -1,24 +1,7 @@
 <script>
   import Accordion from "$components/Accordion.svelte";
-  import Config from "$components/Config.svelte";
 
   import Prism from "svelte-prism";
-  import configOptions from "$data/configOptions";
-
-  let configDetails = configOptions;
-
-  configDetails.sort((a, b) => {
-    if (a.required && b.required) {
-      return 0;
-    }
-    if (a.required) {
-      return -1;
-    }
-    if (b.required) {
-      return 1;
-    }
-    return a.title.localeCompare(b.title);
-  });
 </script>
 
 <h2>Getting Started:</h2>
@@ -141,7 +124,6 @@
 </section>
 
 <section class="section config" id="config">
-  <Config />
   <h3 class="title">Config Example</h3>
   <Prism source="">
     {`{

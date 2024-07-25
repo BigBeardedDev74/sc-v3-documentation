@@ -57,7 +57,7 @@
         <p class="title">V3 - Documentation</p>
       </div>
     </a>
-    <a href="./add-config" class="addConfig">Add Config</a>
+
     <Toggle />
     <Nav />
   </header>
