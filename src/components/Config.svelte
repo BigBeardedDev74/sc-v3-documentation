@@ -39,6 +39,7 @@
 
 <div class="titleContainer">
   <h3 class="title">Config Options</h3>
+  <p>{numOfOptions} Options</p>
   <div class="searchWrapper">
     <input
       type="text"

@@ -1,10 +1,10 @@
-import { db } from "$lib/db.server";
+import { db } from "$lib/server/db";
 import { ConfigOptions } from "$lib/db/schema";
 import type { PageServerLoad } from "./$types";
 
 export const load = (async () => {
-  const result = await db.select().from(ConfigOptions);
+  const configOptions = await db.select().from(ConfigOptions);
   return {
-    result,
+    configOptions,
   };
 }) satisfies PageServerLoad;

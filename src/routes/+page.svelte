@@ -1,8 +1,8 @@
-<script>
+<script lang="ts">
   import Config from "$components/Config.svelte";
-  import configOptions from "$data/configOptions";
+  export let data;
 </script>
 
 <section class="section">
-  <Config configDetails={configOptions} />
+  <Config configDetails={data.configOptions} />
 </section>

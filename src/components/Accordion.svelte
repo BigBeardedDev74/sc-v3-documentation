@@ -6,6 +6,8 @@
     required;
   import { slide } from "svelte/transition";
   const handleClick = () => (open = !open);
+
+  $: requiredText = required === 1 ? "Yes" : "No";
 </script>
 
 <div class="configs">
@@ -19,7 +21,7 @@
     <div class="configDetails" transition:slide>
       <p class="type"><strong>Type:</strong> {type}</p>
       <p class="desc"><strong>Description:</strong> {@html desc}</p>
-      <p class="required"><strong>Required:</strong> {required}</p>
+      <p class="required"><strong>Required:</strong> {requiredText}</p>
     </div>
   {/if}
 </div>

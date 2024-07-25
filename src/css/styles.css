@@ -17,6 +17,7 @@
   --breakout-size: calc(
     (var(--breakout-max-width) - var(--content-max-width)) / 2
   );
+  --errorColor: #a00;
   .dark {
     --backgroundColor: oklch(30% 0 0);
     --textColor: oklch(100% 0 0);
