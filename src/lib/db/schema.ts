@@ -4,6 +4,7 @@ import {
   serial,
   varchar,
   timestamp,
+  text,
 } from "drizzle-orm/pg-core";
 
 export const ConfigOptions = pgTable("ConfigOptions", {
@@ -15,4 +16,10 @@ export const ConfigOptions = pgTable("ConfigOptions", {
   required: integer("required").notNull().default(0),
   createdAt: timestamp("createdAt"),
   updatedAt: timestamp("updatedAt"),
+});
+
+export const UserMessages = pgTable("user_messages", {
+  user_id: text("user_id").primaryKey().notNull(),
+  message: text("message").notNull(),
+  createTs: timestamp("create_ts").defaultNow().notNull(),
 });

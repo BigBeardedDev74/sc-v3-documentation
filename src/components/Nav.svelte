@@ -145,12 +145,13 @@
   .nav {
     grid-column: 1 / -1;
     a {
-      color: #fff;
+      color: var(--textColor);
       font-size: clamp(16px, 2vw, 20px);
       font-weight: 600;
       text-transform: uppercase;
       transition: all 0.2s ease-in-out;
       text-align: center;
+      padding: 5px 0;
 
       &:hover {
         transform: scale(1.1);
@@ -159,7 +160,8 @@
       }
       &.active {
         color: var(--secondaryColor);
-        text-decoration: underline;
+        box-shadow: var(--hoverGlow);
+        border-radius: 20px;
         &:hover {
           text-decoration: none;
         }

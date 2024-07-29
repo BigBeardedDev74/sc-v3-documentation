@@ -2,7 +2,9 @@
   export let data;
   import Toast from "$components/Toast.svelte";
 
-  const configOptions = data.configOptions;
+  let configOptions = data.configOptions;
+
+  $: console.log(configOptions);
 
   const titles = configOptions.map((option) => option.title.toLowerCase());
 
@@ -45,7 +47,7 @@
   const handleSubmit = async (e) => {
     formIsValid = true;
 
-    const data = new FormData(e.currentTarget);
+    const formData = new FormData(e.currentTarget);
 
     if (fields.title.length < 2) {
       formIsValid = false;
@@ -68,7 +70,7 @@
       try {
         const response = await fetch(e.currentTarget.action, {
           method: "POST",
-          body: data,
+          body: formData,
         });
         fields = {
           title: "",
@@ -78,6 +80,7 @@
           keywords: "",
         };
         showPopover = true;
+        setTimeout(() => (showPopover = false), 3250);
       } catch (error) {
         console.log(error);
       }
@@ -85,7 +88,7 @@
   };
 </script>
 
-<Toast {showPopover} message="🏁 --- BAM!! New Config Added! --- 🏁" />
+<Toast {showPopover} message="🏁 --- New Config Added! --- 🏁" />
 
 <section class="section">
   <h3 class="title">Add a New Config Option</h3>
