@@ -21,5 +21,9 @@ export const load: LayoutServerLoad = async (event) => {
         session,
       };
     }
+  } else {
+    return {
+      session,
+    };
   }
 };
