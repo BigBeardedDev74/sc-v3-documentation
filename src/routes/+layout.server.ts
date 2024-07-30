@@ -2,9 +2,9 @@ import type { LayoutServerLoad } from "./$types";
 import { db } from "$lib/server/db";
 import { Users } from "$lib/db/schema";
 export const load: LayoutServerLoad = async (event) => {
-  console.log("loading layout");
   const session = await event.locals.auth();
   const users = await db.select().from(Users);
+  console.log("loading layout", session, users);
 
   // check if session.user.email exists in users
   if (session?.user?.email) {
