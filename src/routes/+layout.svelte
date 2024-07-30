@@ -9,16 +9,16 @@
   import { Logo } from "$img";
   import Toggle from "$components/ToggleButton.svelte";
   import { theme } from "$lib/stores";
+  import { injectSpeedInsights } from "@vercel/speed-insights/sveltekit";
 
   export let data;
   let isLoaded = false;
 
   const validUser = data?.validUser;
 
-  console.log("validUser", validUser);
-
   const user = data?.session?.user;
 
+  injectSpeedInsights();
   onMount(() => {
     if (localStorage.getItem("theme") === "dark") {
       document.body.classList.add("dark");

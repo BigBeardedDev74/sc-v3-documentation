@@ -4,10 +4,6 @@
 
   let configOptions = data.configOptions;
 
-  const userImage = data?.session?.user?.image;
-
-  console.log("data", data);
-
   const titles = configOptions.map((option) => option.title.toLowerCase());
 
   let fields = {
