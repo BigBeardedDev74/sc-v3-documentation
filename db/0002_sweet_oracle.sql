@@ -1,0 +1,1 @@
+ALTER TABLE "Users" ADD COLUMN "id" serial NOT NULL;

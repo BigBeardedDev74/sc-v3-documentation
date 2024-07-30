@@ -13,6 +13,12 @@
   export let data;
   let isLoaded = false;
 
+  const validUser = data?.validUser;
+
+  console.log("validUser", validUser);
+
+  const user = data?.session?.user;
+
   onMount(() => {
     if (localStorage.getItem("theme") === "dark") {
       document.body.classList.add("dark");
@@ -58,9 +64,29 @@
       </div>
     </a>
 
+    {#if user}
+      <a href="/auth/signout">
+        <div class="userContainer">
+          {#if user.image}
+            <div class="userImageContainer">
+              <img src={user?.image} alt="User Image" />
+            </div>
+          {/if}
+          <span>Sign out</span>
+        </div>
+      </a>
+    {:else}
+      <a href="/auth/signin">
+        <div class="userContainer">
+          <span>Sign in</span>
+        </div>
+      </a>
+    {/if}
+
     <Toggle />
-    <Nav />
+    <Nav isUser={validUser} />
   </header>
+
   <main>
     {#key data.pathname}
       <div in:fade={{ duration: 150, delay: 155 }} out:fade={{ duration: 150 }}>
@@ -133,5 +159,21 @@
 
     display: grid;
     grid-template-columns: inherit;
+  }
+  .userImageContainer {
+    width: 50px;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+  .userContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    a {
+      text-decoration: none;
+      color: var(--buttonBgColor);
+    }
   }
 </style>

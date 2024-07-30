@@ -8,6 +8,27 @@
       "when": 1722011793994,
       "tag": "0000_lowly_sentinels",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1722278689961,
+      "tag": "0001_violet_ultimo",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1722279157636,
+      "tag": "0002_sweet_oracle",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1722279409186,
+      "tag": "0003_fancy_overlord",
+      "breakpoints": true
     }
   ]
 }

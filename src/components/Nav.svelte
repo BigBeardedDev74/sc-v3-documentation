@@ -1,6 +1,7 @@
 <script>
   import { page } from "$app/stores";
   import { slide, fade, scale } from "svelte/transition";
+  export let isUser;
 
   let showNav = false;
 
@@ -102,11 +103,13 @@
   <a href="/testing" class={$page.data.pathname === "/testing" ? "active" : ""}
     >Testing</a
   >
-  <a
-    href="/add-config"
-    class={$page.data.pathname === "/add-config" ? "active" : ""}
-    >Add Config Option</a
-  >
+  {#if isUser}
+    <a
+      href="/add-config"
+      class={$page.data.pathname === "/add-config" ? "active" : ""}
+      >Add Config Option</a
+    >
+  {/if}
 </nav>
 
 <style>

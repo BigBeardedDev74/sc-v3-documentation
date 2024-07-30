@@ -4,7 +4,9 @@
 
   let configOptions = data.configOptions;
 
-  $: console.log(configOptions);
+  const userImage = data?.session?.user?.image;
+
+  console.log("data", data);
 
   const titles = configOptions.map((option) => option.title.toLowerCase());
 
@@ -278,5 +280,8 @@
     color: var(--errorColor);
     font-style: italic;
     margin: 0 0 10px;
+  }
+  .imageContainer {
+    width: 40px;
   }
 </style>

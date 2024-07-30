@@ -18,8 +18,10 @@ export const ConfigOptions = pgTable("ConfigOptions", {
   updatedAt: timestamp("updatedAt"),
 });
 
-export const UserMessages = pgTable("user_messages", {
-  user_id: text("user_id").primaryKey().notNull(),
-  message: text("message").notNull(),
-  createTs: timestamp("create_ts").defaultNow().notNull(),
+export const Users = pgTable("Users", {
+  id: serial("id").notNull(),
+  user_email: varchar("user_email", { length: 256 }).primaryKey().notNull(),
+  user_name: varchar("user_name", { length: 256 }).notNull(),
+  role: varchar("role", { length: 256 }).notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
 });
