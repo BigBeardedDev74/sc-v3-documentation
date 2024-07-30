@@ -18,6 +18,8 @@
 
   const user = data?.session?.user;
 
+  $: console.log("data from +layout", data, user);
+
   injectSpeedInsights();
   onMount(() => {
     if (localStorage.getItem("theme") === "dark") {
@@ -69,7 +71,7 @@
         <div class="userContainer">
           {#if user.image}
             <div class="userImageContainer">
-              <img src={user?.image} alt="User Image" />
+              <img src={user?.image} alt="Current User" />
             </div>
           {/if}
           <span>Sign out</span>
