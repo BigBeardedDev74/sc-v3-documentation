@@ -18,8 +18,6 @@
 
   const user = data?.session?.user;
 
-  $: console.log("data from +layout", data, user);
-
   injectSpeedInsights();
   onMount(() => {
     if (localStorage.getItem("theme") === "dark") {
