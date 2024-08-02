@@ -3,6 +3,7 @@
   import Toast from "$components/Toast.svelte";
 
   let configOptions = data.configOptions;
+  const validUser = data.validUser;
 
   const titles = configOptions.map((option) => option.title.toLowerCase());
 
@@ -86,111 +87,124 @@
   };
 </script>
 
-<Toast {showPopover} message="🏁 --- New Config Added! --- 🏁" />
+{#if !validUser}
+  <section class="section">
+    <h3 class="oops">
+      It looks like you don't have permission to access this page.
+    </h3>
+    <h3 class="oops">
+      To request access please reach out to one of the members of the front end
+      team.
+    </h3>
+    <a href="/" class="button is-link">Back to home</a>
+  </section>
+{:else}
+  <Toast {showPopover} message="🏁 --- New Config Added! --- 🏁" />
 
-<section class="section">
-  <h3 class="title">Add a New Config Option</h3>
-  <form
-    action="?/addConfigOption"
-    on:submit|preventDefault={handleSubmit}
-    class="form"
-  >
-    <div class="field">
-      <label class="label" for="title">Title:</label>
-      <input
-        class="input"
-        type="text"
-        placeholder="Title"
-        id="title"
-        name="title"
-        bind:value={fields.title}
-        on:blur={() => validateField("title", fields.title)}
-      />
-      <p class="error">{errors.title}</p>
-    </div>
-    <div class="field">
-      <label class="label" for="description">Description:</label>
-      <textarea
-        class="input"
-        placeholder="Description"
-        name="desc"
-        id="description"
-        bind:value={fields.desc}
-        on:blur={() => validateField("desc", fields.desc)}
-      />
-      <p class="error">{errors.desc}</p>
-    </div>
-    <div class="field">
-      <p class="label">Type:</p>
-      <div class="radioGroup">
+  <section class="section">
+    <h3 class="title">Add a New Config Option</h3>
+    <form
+      action="?/addConfigOption"
+      on:submit|preventDefault={handleSubmit}
+      class="form"
+    >
+      <div class="field">
+        <label class="label" for="title">Title:</label>
         <input
-          type="radio"
-          name="type"
-          id="type"
-          value="string"
-          checked
-          bind:group={fields.type}
+          class="input"
+          type="text"
+          placeholder="Title"
+          id="title"
+          name="title"
+          bind:value={fields.title}
+          on:blur={() => validateField("title", fields.title)}
         />
-        <label class="label" for="type">String</label>
-        <input
-          type="radio"
-          name="type"
-          id="number"
-          value="number"
-          bind:group={fields.type}
-        />
-        <label class="label" for="number">Number</label>
-        <input
-          type="radio"
-          name="type"
-          id="boolean"
-          value="boolean"
-          bind:group={fields.type}
-        />
-        <label class="label" for="boolean">Boolean</label>
+        <p class="error">{errors.title}</p>
       </div>
-    </div>
-    <div class="field">
-      <label class="label" for="keywords">
-        Keywords <span class="small">
-          (add search terms that are not included in the description)
-        </span>:
-      </label>
-      <input
-        class="input"
-        type="text"
-        placeholder="Keywords"
-        id="keywords"
-        name="keywords"
-        bind:value={fields.keywords}
-      />
-    </div>
-    <div class="field">
-      <p class="label">Required:</p>
-      <div class="radioGroup">
-        <input
-          type="radio"
-          name="required"
-          id="notRequired"
-          value="0"
-          bind:group={fields.required}
+      <div class="field">
+        <label class="label" for="description">Description:</label>
+        <textarea
+          class="input"
+          placeholder="Description"
+          name="desc"
+          id="description"
+          bind:value={fields.desc}
+          on:blur={() => validateField("desc", fields.desc)}
         />
-        <label class="label" for="notRequired">Not Required</label>
-        <input
-          type="radio"
-          name="required"
-          id="isRequired"
-          value="1"
-          bind:group={fields.required}
-        />
-        <label class="label" for="isRequired">Required</label>
+        <p class="error">{errors.desc}</p>
       </div>
-    </div>
-    <div class="field">
-      <button class="button is-link" type="submit">Add</button>
-    </div>
-  </form>
-</section>
+      <div class="field">
+        <p class="label">Type:</p>
+        <div class="radioGroup">
+          <input
+            type="radio"
+            name="type"
+            id="type"
+            value="string"
+            checked
+            bind:group={fields.type}
+          />
+          <label class="label" for="type">String</label>
+          <input
+            type="radio"
+            name="type"
+            id="number"
+            value="number"
+            bind:group={fields.type}
+          />
+          <label class="label" for="number">Number</label>
+          <input
+            type="radio"
+            name="type"
+            id="boolean"
+            value="boolean"
+            bind:group={fields.type}
+          />
+          <label class="label" for="boolean">Boolean</label>
+        </div>
+      </div>
+      <div class="field">
+        <label class="label" for="keywords">
+          Keywords <span class="small">
+            (add search terms that are not included in the description)
+          </span>:
+        </label>
+        <input
+          class="input"
+          type="text"
+          placeholder="Keywords"
+          id="keywords"
+          name="keywords"
+          bind:value={fields.keywords}
+        />
+      </div>
+      <div class="field">
+        <p class="label">Required:</p>
+        <div class="radioGroup">
+          <input
+            type="radio"
+            name="required"
+            id="notRequired"
+            value="0"
+            bind:group={fields.required}
+          />
+          <label class="label" for="notRequired">Not Required</label>
+          <input
+            type="radio"
+            name="required"
+            id="isRequired"
+            value="1"
+            bind:group={fields.required}
+          />
+          <label class="label" for="isRequired">Required</label>
+        </div>
+      </div>
+      <div class="field">
+        <button class="button is-link" type="submit">Add</button>
+      </div>
+    </form>
+  </section>
+{/if}
 
 <style>
   .form {
