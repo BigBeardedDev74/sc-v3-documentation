@@ -1,6 +1,6 @@
 /** @type {import('@sveltejs/adapter-vercel').Config} */
 export const config = {
-  runtime: "edge",
+  runtime: "nodejs18.x",
 };
 
 export const load = ({ url, data }) => {
