@@ -1,7 +1,6 @@
 <script>
   export let data;
   import Toast from "$components/Toast.svelte";
-  import { create } from "domain";
 
   let configOptions = data.configOptions;
   const validUser = data.validUser;
@@ -79,6 +78,7 @@
           type: "string",
           required: "0",
           keywords: "",
+          createdBy: validUser?.user_name,
         };
         showPopover = true;
         setTimeout(() => (showPopover = false), 3250);
@@ -201,6 +201,7 @@
           <label class="label" for="isRequired">Required</label>
         </div>
       </div>
+      <input type="hidden" name="createdBy" value={validUser?.user_name} />
 
       <div class="field">
         <button class="button is-link" type="submit">Add</button>

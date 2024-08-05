@@ -18,10 +18,11 @@ export const actions = {
     const keywords = data.get("keywords") || null;
     const required = parseInt(data.get("required")) || 0;
     const createdAt = new Date();
+    const createdBy = data.get("createdBy") || null;
     if (title && desc) {
       const newConfigOption = await db
         .insert(ConfigOptions)
-        .values({ title, desc, type, keywords, required, createdAt })
+        .values({ title, desc, type, keywords, required, createdAt, createdBy })
         .execute();
       return {
         success: true,
