@@ -47,7 +47,13 @@
     based and those components are build using css variables. The first portion
     of the style sheet is a list of variables that can be used to changes
     elements of the form. The remaining styles are also handled within that
-    page.
+    page. If the styles are for a test they will be in the AltStyles1.css file.
+    The number at the end of the AltStyles will correspond to the test number.
+    We currently use 1-8. If you add a new alt styles file you will need to
+    include the :root variables at the top of the file. The styles are not
+    inherited from the default styles.css file. So if you want to use the
+    default styles as a base, it is best to cope and paste the styles.css sheet
+    into the new alt styles file, then make your changes.
   </p>
 </section>
 
@@ -56,5 +62,6 @@
   <p>
     Some changes need to be done on a component level, however these are shared
     components so it is important that any updates do not impact other sites.
+    The best way to do this is to control any variations with a config option.
   </p>
 </section>
