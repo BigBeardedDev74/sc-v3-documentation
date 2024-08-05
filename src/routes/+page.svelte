@@ -11,10 +11,10 @@
   configDetails = configDetails.filter((option) => option.archived !== 1);
 
   let currentOption = null;
+  let type = null;
 
   $: currentOption = null;
-
-  $: console.log("currentOption", currentOption);
+  $: type = null;
 
   configDetails = configDetails.map((option) => {
     let searchTerms = `${option?.title} ${option?.desc} ${option?.keywords}`;
@@ -32,16 +32,21 @@
     isValidUser = true;
   }
 
-  const openConfirmationModal = (option) => {
+  const openUpdateModal = (option, event, modalType) => {
     currentOption = option;
-    const confirmationModal = document.getElementById("confirmationContainer");
-    confirmationModal?.showModal();
+    type = modalType;
+
+    const UpdateModal = document.getElementById("updateModal");
+    UpdateModal?.showModal();
   };
 
-  const handlePopoverClose = () => {
-    const confirmationModal = document.getElementById("confirmationContainer");
-    confirmationModal?.close();
+  const handleModalClose = () => {
+    const UpdateModal = document.getElementById("updateModal");
+    UpdateModal?.close();
     currentOption = null;
+    setTimeout(() => {
+      type = null;
+    }, 500);
   };
 
   onDestroy(() => {
@@ -62,30 +67,72 @@
   });
 </script>
 
-<dialog
-  class="confirmationContainer"
-  id="confirmationContainer"
-  on:close={handlePopoverClose}
->
-  {#if currentOption?.title}
+<dialog class="updateModal" id="updateModal" on:close={handleModalClose}>
+  {#if type === "delete"}
     <p class="confirmDelete">
       Are you sure you want to delete <span class="currentOption"
         >{currentOption?.title}</span
       >?
     </p>
-  {/if}
-  <div class="modalButtonContainer">
-    <form action="?/deleteConfigOption" method="POST">
+
+    <div class="modalButtonContainer">
+      <form action="?/deleteConfigOption" method="POST">
+        <input type="hidden" name="id" value={currentOption?.id} />
+        <input
+          type="hidden"
+          name="updatedBy"
+          value={data?.validUser?.user_name}
+        />
+        <button class="button" type="submit">Yes</button>
+      </form>
+      <button class="button" on:click={handleModalClose}>No</button>
+    </div>
+  {:else}
+    <h3 class="updateModalTitle">
+      Update: <span class="currentOption">{currentOption?.title}</span>
+    </h3>
+    <form action="?/updateConfigOption" method="POST" id="updateForm">
       <input type="hidden" name="id" value={currentOption?.id} />
       <input
         type="hidden"
         name="updatedBy"
         value={data?.validUser?.user_name}
       />
-      <button class="button" type="submit">Yes</button>
+
+      <label for="desc">Description:</label>
+      <textarea name="desc" id="desc" required>{currentOption?.desc}</textarea>
+      <label for="type">Type:</label>
+      <select name="type" id="type" required>
+        <option value="string" selected={currentOption?.type === "string"}>
+          String
+        </option>
+        <option value="number" selected={currentOption?.type === "number"}>
+          Number
+        </option>
+        <option value="boolean" selected={currentOption?.type === "boolean"}>
+          Boolean
+        </option>
+      </select>
+      <label for="required">Required:</label>
+      <select name="required" id="required" required>
+        <option value="1" selected={currentOption?.required === 1}>Yes</option>
+        <option value="0" selected={currentOption?.required === 0}>No</option>
+      </select>
+      <label for="keywords">Keywords:</label>
+      <input
+        type="text"
+        name="keywords"
+        id="keywords"
+        value={currentOption?.keywords}
+      />
+      <div class="modalButtonContainer">
+        <button class="button" type="submit">Update</button>
+        <button class="button" type="button" on:click={handleModalClose}
+          >Cancel</button
+        >
+      </div>
     </form>
-    <button class="button" on:click={handlePopoverClose}>No</button>
-  </div>
+  {/if}
 </dialog>
 <section class="section">
   <div class="titleContainer">
@@ -145,11 +192,20 @@
           desc={option.desc}
           required={option.required}
         />
-        {#if isValidUser && !option.required}
+        {#if isValidUser}
           <div class="deleteButtonContainer">
-            <button on:click={(event) => openConfirmationModal(option, event)}
-              >Delete</button
+            {#if !option.required}
+              <button
+                on:click={(event) => openUpdateModal(option, event, "delete")}
+              >
+                Delete
+              </button>
+            {/if}
+            <button
+              on:click={(event) => openUpdateModal(option, event, "update")}
             >
+              Update
+            </button>
           </div>
         {/if}
       </div>
@@ -234,5 +290,20 @@
   .currentOption {
     color: var(--secondaryColor);
     font-weight: 900;
+  }
+  #updateForm {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 50vw;
+    max-width: 740px;
+    @media (max-width: 768px) {
+      width: 90vw;
+    }
+    select {
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
   }
 </style>

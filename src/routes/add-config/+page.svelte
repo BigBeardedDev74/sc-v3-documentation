@@ -101,7 +101,7 @@
     <a href="/" class="button is-link">Back to home</a>
   </section>
 {:else}
-  <Toast {showPopover} message="🏁 --- New Config Added! --- 🏁" />
+  <Toast {showPopover} message="New Config Added!" />
 
   <section class="section">
     <h3 class="title">Add a New Config Option</h3>
@@ -211,65 +211,6 @@
 {/if}
 
 <style>
-  .form {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-  input[type="text"] {
-    height: 50px;
-    padding: 0 10px;
-    border-radius: 10px;
-  }
-
-  textarea {
-    padding: 10px;
-    border-radius: 10px;
-    min-height: 140px;
-  }
-
-  .field {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-  }
-
-  .small {
-    font-size: 0.8rem;
-  }
-
-  .radioGroup {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    input {
-      display: none;
-    }
-    .label {
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      &:before {
-        content: "";
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 1em;
-        height: 1em;
-        border: 1px solid #ccc;
-        border-radius: 50px;
-        margin-right: 0.5em;
-        padding: 0.2em;
-        transition: background-color 150ms ease-in-out;
-      }
-    }
-
-    input:checked + .label:before {
-      content: "\2713";
-      background-color: var(--primaryColor);
-      border-color: var(--primaryColor);
-    }
-  }
   button {
     margin: 2em auto;
     width: 300px;
@@ -289,11 +230,6 @@
       box-shadow: var(--hoverGlow);
       scale: 1.1;
     }
-  }
-  .error {
-    color: var(--errorColor);
-    font-style: italic;
-    margin: 0 0 10px;
   }
   .imageContainer {
     width: 40px;
