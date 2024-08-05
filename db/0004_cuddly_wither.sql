@@ -1,0 +1,1 @@
+ALTER TABLE "ConfigOptions" ADD COLUMN "createdBy" varchar(256) NOT NULL;

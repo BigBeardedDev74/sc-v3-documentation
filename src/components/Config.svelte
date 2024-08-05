@@ -1,11 +1,10 @@
 <script>
   import Accordion from "$components/Accordion.svelte";
-  // import configOptions from "$data/configOptions";
   import { fly, fade } from "svelte/transition";
   import { createSearchStore, searchHandler } from "$lib/search";
   import { onDestroy } from "svelte";
 
-  export let configDetails;
+  export let configDetails, validUser;
 
   configDetails = configDetails.map((option) => {
     let searchTerms = `${option?.title} ${option?.desc} ${option?.keywords}`;
@@ -83,6 +82,8 @@
 {:else}
   {#each updatedConfigDetails as option, i}
     <div
+      class="configDetailContainer"
+      class:validUser
       in:fly={{ x: -200, duration: 25 * i }}
       out:fly={{ x: 200, duration: 25 * i }}
     >
@@ -92,6 +93,17 @@
         desc={option.desc}
         required={option.required}
       />
+      {#if validUser}
+        <div class="deleteButtonContainer">
+          <form action="/delete" method="POST">
+            <input type="hidden" name="id" value={option.id} />
+
+            <button>Delete</button>
+          </form>
+          <!-- <button>Edit</button>
+          <button>Delete</button> -->
+        </div>
+      {/if}
     </div>
   {/each}
 {/if}
@@ -128,5 +140,19 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+  }
+  .configDetailContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    &.validUser {
+      margin-bottom: 1rem;
+    }
+  }
+  .deleteButtonContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: fit-content;
   }
 </style>

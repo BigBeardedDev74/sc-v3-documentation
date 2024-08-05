@@ -199,6 +199,7 @@
           <label class="label" for="isRequired">Required</label>
         </div>
       </div>
+      <input type="hidden" name="createdBy" value={validUser.user_name} />
       <div class="field">
         <button class="button is-link" type="submit">Add</button>
       </div>

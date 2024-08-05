@@ -1,0 +1,1 @@
+ALTER TABLE "ConfigOptions" ADD COLUMN "archived" integer DEFAULT 0;

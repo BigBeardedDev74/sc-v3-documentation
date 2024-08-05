@@ -14,8 +14,11 @@ export const ConfigOptions = pgTable("ConfigOptions", {
   type: varchar("type", { length: 256 }).notNull(),
   keywords: varchar("keywords", { length: 256 }),
   required: integer("required").notNull().default(0),
+  createdBy: varchar("createdBy", { length: 256 }).default("Mike Daugherty"),
+  updatedBy: varchar("updatedBy", { length: 256 }).default(""),
   createdAt: timestamp("createdAt"),
   updatedAt: timestamp("updatedAt"),
+  archived: integer("archived").default(0),
 });
 
 export const Users = pgTable("Users", {

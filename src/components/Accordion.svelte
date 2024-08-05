@@ -29,6 +29,7 @@
 <style lang="postcss">
   .configs {
     margin-left: 2rem;
+    width: 100%;
   }
 
   .configDetails {

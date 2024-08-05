@@ -3,6 +3,7 @@
   --textColor: oklch(32.11% 0 0);
   --borderColor: oklch(84.52% 0 0);
   --bgColor: oklch(100% 0 0);
+  --stripeBgColor: oklch(95% 0 0);
   --buttonBgColor: oklch(37.44% 0.077 233.06);
   --buttonTextColor: oklch(100% 0 0);
   --hoverGlow: 0 0 2px #fff, 0 0 2px #fff, 0 0 2px #fff, 0 0 2px #fff,
@@ -27,6 +28,7 @@
     --textColor: oklch(100% 0 0);
     --borderColor: oklch(32.11% 0 0);
     --bgColor: oklch(16.84% 0 0);
+    --stripeBgColor: oklch(25% 0 0);
     --buttonBgColor: oklch(77.44% 0.077 233.06);
     --hoverGlow: 0 0 2px #000, 0 0 2px #000, 0 0 2px #000, 0 0 2px #000,
       0 0 15px #6db4dc, 0 0 15px #6db4dc, 0 0 15px #6db4dc, 0 0 15px #6db4dc,
@@ -96,4 +98,40 @@ a {
 }
 .hide {
   --toastOpacity: 0;
+}
+
+#confirmationContainer {
+  border-radius: 10px;
+  background: var(--bgColor);
+  padding: 1rem;
+  color: var(--textColor);
+  opacity: 0;
+
+  transition: display 0.3s allow-discrete, overlay 0.3s allow-discrete,
+    translate 0.3s, opacity 0.3s;
+  &::backdrop {
+    transition: display 0.3s allow-discrete, overlay 0.3s allow-discrete,
+      translate 0.3s, opacity 0.3s;
+    opacity: 0;
+  }
+  &[open] {
+    transition: display 0.3s allow-discrete, overlay 0.3s allow-discrete,
+      translate 0.3s, opacity 0.3s;
+    opacity: 1;
+    translate: 0 0;
+    &::backdrop {
+      opacity: 1;
+      translate: 0 0;
+      background: rgba(0, 0, 0, 0.7);
+    }
+  }
+  @starting-style {
+    &[open]::backdrop {
+      opacity: 0;
+    }
+    &[open] {
+      opacity: 0;
+      translate: 0 -100%;
+    }
+  }
 }
