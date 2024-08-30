@@ -11,6 +11,9 @@ dependencies:
   '@auth/sveltekit':
     specifier: ^1.4.1
     version: 1.4.2(@sveltejs/kit@1.30.4)(svelte@4.2.18)
+  '@neodrag/svelte':
+    specifier: ^2.0.6
+    version: 2.0.6
   '@neondatabase/serverless':
     specifier: ^0.7.2
     version: 0.7.2
@@ -1227,6 +1230,10 @@ packages:
     transitivePeerDependencies:
       - encoding
       - supports-color
+    dev: false
+
+  /@neodrag/svelte@2.0.6:
+    resolution: {integrity: sha512-jjmTjRTMJaer2IyEIoS5xbccmFmOpkeoTKpBORkMItCPjHWE19eW3kvH9SuTvZJAKnKERVNGdW3VBuDxZif9Dg==}
     dev: false
 
   /@neondatabase/serverless@0.7.2:
