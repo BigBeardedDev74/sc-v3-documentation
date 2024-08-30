@@ -49,7 +49,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@100;200;300;400;500;600;700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Recursive:slnt,wght,CASL,CRSV,MONO@-15..0,300..1000,0..1,0..1,0..1&display=swap"
     rel="stylesheet"
   />
 </svelte:head>
@@ -125,7 +125,8 @@
   }
   .title {
     font-size: clamp(22px, 3.5vw, 40px);
-    font-weight: 700;
+    --wght: "wght" 700;
+    --casl: "CASL" 0;
     color: var(--textColor);
     margin: 0;
     text-decoration: none;

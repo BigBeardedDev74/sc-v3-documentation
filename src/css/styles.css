@@ -23,6 +23,11 @@
   );
   --errorColor: #a00;
   --toastOpacity: 0.9;
+  --mono: "MONO" 0;
+  --casl: "CASL" 0.5;
+  --crsv: "CRSV" 0;
+  --slnt: "slnt" 0;
+  --wght: "wght" 400;
   .dark {
     --backgroundColor: oklch(30% 0 0);
     --textColor: oklch(100% 0 0);
@@ -35,10 +40,44 @@
       0 0 15px #6db4dc;
   }
 }
+
+h1,
+h2 {
+  --wght: "wght" 800;
+  --mono: "MONO" 0;
+  --casl: "CASL" 0;
+  --crsv: "CRSV" 0.5;
+  --slnt: "slnt" 0;
+}
+h3,
+h4 {
+  --wght: "wght" 700;
+  --mono: "MONO" 0;
+  --casl: "CASL" 0;
+  --crsv: "CRSV" 0.5;
+  --slnt: "slnt" 0;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Recursive", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-variation-settings: var(--mono), var(--casl), var(--crsv), var(--slnt),
+    var(--wght);
+}
 body,
 html {
-  font-family: "Lato", sans-serif;
+  font-family: "Recursive", sans-serif;
   font-size: 18px;
+  font-style: normal;
+  font-optical-sizing: auto;
+  font-variation-settings: "slnt" 0, "CASL" 0, "CRSV" 0.5, "MONO" 0;
   background: var(--backgroundColor);
   color: var(--textColor);
   min-height: 100vh;
