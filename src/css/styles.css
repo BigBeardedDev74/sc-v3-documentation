@@ -106,7 +106,7 @@ a {
   padding: 1rem;
   color: var(--textColor);
   opacity: 0;
-
+  translate: 0 -100%;
   transition: display 0.3s allow-discrete, overlay 0.3s allow-discrete,
     translate 0.3s, opacity 0.3s;
   &::backdrop {

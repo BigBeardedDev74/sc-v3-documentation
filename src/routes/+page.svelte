@@ -1,4 +1,4 @@
-<script lang="ts">
+<script>
   import Accordion from "$components/Accordion.svelte";
   import { fly } from "svelte/transition";
   import { createSearchStore, searchHandler } from "$lib/search";
@@ -43,8 +43,8 @@
   const handleModalClose = () => {
     const UpdateModal = document.getElementById("updateModal");
     UpdateModal?.close();
-    currentOption = null;
     setTimeout(() => {
+      currentOption = null;
       type = null;
     }, 500);
   };
@@ -288,7 +288,7 @@
   {/if}
 </section>
 
-<style lang="postcss">
+<style>
   .configDetails {
     padding: 1rem;
     border: 2px solid #ccc;
