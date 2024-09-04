@@ -135,34 +135,60 @@
         />
         <p class="error">{errors.desc}</p>
       </div>
-      <div class="field">
-        <p class="label">Type:</p>
-        <div class="radioGroup">
-          <input
-            type="radio"
-            name="type"
-            id="type"
-            value="string"
-            checked
-            bind:group={fields.type}
-          />
-          <label class="label" for="type">String</label>
-          <input
-            type="radio"
-            name="type"
-            id="number"
-            value="number"
-            bind:group={fields.type}
-          />
-          <label class="label" for="number">Number</label>
-          <input
-            type="radio"
-            name="type"
-            id="boolean"
-            value="boolean"
-            bind:group={fields.type}
-          />
-          <label class="label" for="boolean">Boolean</label>
+      <div class="multiFields">
+        <div class="field">
+          <p class="label">Config Type:</p>
+          <div class="radioGroup">
+            <input
+              type="radio"
+              name="type"
+              id="type"
+              value="string"
+              checked
+              bind:group={fields.type}
+            />
+            <label class="label radioLabel" for="type">String</label>
+            <input
+              type="radio"
+              name="type"
+              id="number"
+              value="number"
+              bind:group={fields.type}
+            />
+            <label class="label radioLabel" for="number">Number</label>
+            <input
+              type="radio"
+              name="type"
+              id="boolean"
+              value="boolean"
+              bind:group={fields.type}
+            />
+            <label class="label radioLabel" for="boolean">Boolean</label>
+          </div>
+        </div>
+
+        <div class="field">
+          <p class="label">Is this item Required:</p>
+          <div class="radioGroup">
+            <input
+              type="radio"
+              name="required"
+              id="notRequired"
+              value="0"
+              bind:group={fields.required}
+            />
+            <label class="label radioLabel" for="notRequired"
+              >Not Required</label
+            >
+            <input
+              type="radio"
+              name="required"
+              id="isRequired"
+              value="1"
+              bind:group={fields.required}
+            />
+            <label class="label radioLabel" for="isRequired">Required</label>
+          </div>
         </div>
       </div>
       <div class="field">
@@ -179,27 +205,6 @@
           name="keywords"
           bind:value={fields.keywords}
         />
-      </div>
-      <div class="field">
-        <p class="label">Required:</p>
-        <div class="radioGroup">
-          <input
-            type="radio"
-            name="required"
-            id="notRequired"
-            value="0"
-            bind:group={fields.required}
-          />
-          <label class="label" for="notRequired">Not Required</label>
-          <input
-            type="radio"
-            name="required"
-            id="isRequired"
-            value="1"
-            bind:group={fields.required}
-          />
-          <label class="label" for="isRequired">Required</label>
-        </div>
       </div>
       <input type="hidden" name="createdBy" value={validUser?.user_name} />
 
@@ -233,5 +238,19 @@
   }
   .imageContainer {
     width: 40px;
+  }
+  .multiFields {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1em;
+    margin-bottom: 1em;
+  }
+  label,
+  .label {
+    font-size: 1.2rem;
+    --wght: "wght" 700;
+  }
+  .radioLabel {
+    --wght: "wght" 400;
   }
 </style>
