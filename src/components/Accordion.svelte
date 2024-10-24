@@ -69,7 +69,12 @@
       </div>
     </button>
     {#if showPopover}
-      <Toast {showPopover} message={`${title} copied`} duration={1500} } />
+      <Toast
+        {showPopover}
+        message={`"${title}": copied to clipboard`}
+        duration={1500}
+        }
+      />
     {/if}
   </div>
 

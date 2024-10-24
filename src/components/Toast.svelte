@@ -6,8 +6,6 @@
     type = "success",
     showPopover = false;
 
-  $: console.log(message);
-
   /**
    * @type {HTMLElement | null}
    */
