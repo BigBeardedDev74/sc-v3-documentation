@@ -4,10 +4,22 @@
     type,
     desc,
     required;
-  import { slide } from "svelte/transition";
+  $: message = `<p>copied!</p>`;
+
+  import Toast from "$components/Toast.svelte";
   const handleClick = () => (open = !open);
 
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(title);
+    setTimeout(() => {
+      message = `<p>${title} copied!</p>`;
+      showPopover = true;
+    }, 100);
+    console.log(message);
+  };
+
   $: requiredText = required === 1 ? "Yes" : "No";
+  $: showPopover = false;
 </script>
 
 <div class="configs">
@@ -15,6 +27,41 @@
     <button class="openButton" on:click={handleClick}>
       <h4 class={open ? "option open" : "option"}>{title}</h4>
     </button>
+    <button class="copyButton" on:click={copyToClipboard}>
+      <div class="buttonIcon">
+        <svg
+          viewBox="0 0 554 686"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <mask id="path-1-inside-1_3321_9" fill="white">
+            <rect width="442" height="575" rx="20" />
+          </mask>
+          <rect
+            width="442"
+            height="575"
+            rx="20"
+            stroke-width="100"
+            mask="url(#path-1-inside-1_3321_9)"
+            class="iconPath"
+          />
+          <mask id="path-2-inside-2_3321_9" fill="white">
+            <rect x="112" y="111" width="442" height="575" rx="20" />
+          </mask>
+          <rect
+            x="112"
+            y="111"
+            width="442"
+            height="575"
+            rx="20"
+            stroke-width="100"
+            mask="url(#path-2-inside-2_3321_9)"
+            class="iconPath"
+          />
+        </svg>
+      </div>
+    </button>
+    <Toast {showPopover} {message} />
   </div>
 
   {#if open}
@@ -47,6 +94,33 @@
     cursor: pointer;
     padding: 0;
     margin: 0;
+  }
+  .copyButton {
+    anchor-name: copyButton;
+    margin: 0 0 0 1rem;
+    background: var(--buttonBgColor);
+    color: var(--buttonTextColor);
+    padding: 0.3rem 0.5rem 0.1rem;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s ease-in-out;
+    svg {
+      width: 0.8rem;
+    }
+    &:hover {
+      background: oklch(47.44% 0.077 233.06);
+    }
+  }
+
+  .copyButtonSuccess {
+    background: oklch(47.44% 0.077 233.06);
+    position: fixed;
+    position-anchor: copyButton;
+  }
+
+  .iconPath {
+    stroke: var(--buttonTextColor);
   }
 
   .option {

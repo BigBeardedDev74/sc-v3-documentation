@@ -7,7 +7,7 @@ export const load = async (event) => {
   const users = await db.select().from(Users);
 
   if (!session) {
-    throw redirect(303, "/auth/signin");
+    redirect(303, "/auth/signin");
   }
 
   if (session?.user?.email) {
