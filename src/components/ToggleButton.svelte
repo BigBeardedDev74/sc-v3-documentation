@@ -1,13 +1,17 @@
 <script>
+  import { run } from 'svelte/legacy';
+
   import { theme } from "$lib/stores";
 
-  let darkMode = false;
+  let darkMode = $state(false);
 
-  $: if ($theme === "dark") {
-    darkMode = true;
-  } else {
-    darkMode = false;
-  }
+  run(() => {
+    if ($theme === "dark") {
+      darkMode = true;
+    } else {
+      darkMode = false;
+    }
+  });
 
   let isDebouncing = false;
 
@@ -29,7 +33,7 @@
   };
 </script>
 
-<button class={darkMode ? "dark" : "light"} on:click={clickHandler} />
+<button class={darkMode ? "dark" : "light"} onclick={clickHandler}></button>
 
 <style lang="postcss">
   button {

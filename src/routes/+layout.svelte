@@ -11,8 +11,8 @@
   import { theme } from "$lib/stores";
   import { injectSpeedInsights } from "@vercel/speed-insights/sveltekit";
 
-  export let data;
-  let isLoaded = false;
+  let { data, children } = $props();
+  let isLoaded = $state(false);
 
   const validUser = data?.validUser;
 
@@ -89,8 +89,8 @@
 
   <main>
     {#key data.pathname}
-      <div in:fade={{ duration: 150, delay: 155 }} out:fade={{ duration: 150 }}>
-        <slot />
+      <div in:fade={{ duration: 150, delay: 155 }} out:fade={{ duration: 150 }} class='content'>
+        {@render children?.()}
       </div>
     {/key}
   </main>

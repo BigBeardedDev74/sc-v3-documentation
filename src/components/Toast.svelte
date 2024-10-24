@@ -1,6 +1,6 @@
 <script>
   import { fade } from "svelte/transition";
-  import { onMount } from "svelte";
+  import { onMount, onDestroy } from "svelte";
   export let message = "New Config Added!",
     duration = 2500,
     type = "success",
@@ -39,6 +39,10 @@
   onMount(() => {
     toastContainer = document.getElementById("toastContainer");
     toastContainer?.classList.add(type);
+  });
+
+  onDestroy(() => {
+    showPopover = false;
   });
 </script>
 

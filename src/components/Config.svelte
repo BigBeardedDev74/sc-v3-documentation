@@ -1,10 +1,12 @@
 <script>
+  import { run } from 'svelte/legacy';
+
   import Accordion from "$components/Accordion.svelte";
   import { fly, fade } from "svelte/transition";
   import { createSearchStore, searchHandler } from "$lib/search";
   import { onDestroy } from "svelte";
 
-  export let configDetails, validUser;
+  let { configDetails = $bindable(), validUser } = $props();
 
   configDetails = configDetails.map((option) => {
     let searchTerms = `${option?.title} ${option?.desc} ${option?.keywords}`;
@@ -14,25 +16,30 @@
   const searchStore = createSearchStore(configDetails);
   const unsubscribe = searchStore.subscribe((model) => searchHandler(model));
 
-  $: updatedConfigDetails = $searchStore.filtered;
+  let updatedConfigDetails;
+  run(() => {
+    updatedConfigDetails = $searchStore.filtered;
+  });
 
-  $: numOfOptions = updatedConfigDetails.length;
+  let numOfOptions = $derived(updatedConfigDetails.length);
 
   onDestroy(() => {
     unsubscribe();
   });
 
-  $: updatedConfigDetails.sort((a, b) => {
-    if (a.required && b.required) {
-      return 0;
-    }
-    if (a.required) {
-      return -1;
-    }
-    if (b.required) {
-      return 1;
-    }
-    return a.title.localeCompare(b.title);
+  run(() => {
+    updatedConfigDetails.sort((a, b) => {
+      if (a.required && b.required) {
+        return 0;
+      }
+      if (a.required) {
+        return -1;
+      }
+      if (b.required) {
+        return 1;
+      }
+      return a.title.localeCompare(b.title);
+    });
   });
 </script>
 
@@ -47,7 +54,7 @@
       bind:value={$searchStore.search}
     />
     <button
-      on:click={() => {
+      onclick={() => {
         $searchStore.search = "";
       }}
     >
@@ -56,19 +63,19 @@
   </div>
   <div class="buttonContainer">
     <button
-      on:click={() => {
+      onclick={() => {
         updatedConfigDetails = $searchStore.filtered;
       }}>All</button
     >
     <button
-      on:click={() =>
+      onclick={() =>
         (updatedConfigDetails = $searchStore.filtered.filter(
           (/** @type {{ required: number | boolean; }} */ option) =>
             option.required === 1 || option.required === true
         ))}>Required</button
     >
     <button
-      on:click={() =>
+      onclick={() =>
         (updatedConfigDetails = $searchStore.filtered.filter(
           (/** @type {{ required: number | boolean; }} */ option) =>
             option.required === 0 || option.required === false

@@ -122,6 +122,9 @@ a {
   background: var(--bgColor);
   overflow-x: hidden;
 }
+.content {
+  grid-area: content;
+}
 .title {
   text-decoration: underline;
 }

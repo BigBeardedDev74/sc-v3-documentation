@@ -1,7 +1,7 @@
 <script>
   import { page } from "$app/stores";
   import { slide, fade, scale } from "svelte/transition";
-  export let isUser;
+  let { isUser } = $props();
 
   let showNav = false;
 
@@ -79,8 +79,8 @@
   </button>
 </div> -->
 
-<!-- svelte-ignore a11y-interactive-supports-focus -->
-<!-- svelte-ignore a11y-click-events-have-key-events -->
+<!-- svelte-ignore a11y_interactive_supports_focus -->
+<!-- svelte-ignore a11y_click_events_have_key_events -->
 
 <nav class="nav" in:fade={{ delay: 200 }} out:fade>
   <a href="/" class={$page.data.pathname === "/" ? "active" : ""}

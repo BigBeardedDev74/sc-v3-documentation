@@ -1,23 +1,26 @@
 <script>
-  export let data;
+  import { preventDefault } from 'svelte/legacy';
+
   import Toast from "$components/Toast.svelte";
+  let { data } = $props();
 
   let configOptions = data.configOptions;
   const validUser = data.validUser;
 
   const titles = configOptions.map((option) => option.title.toLowerCase());
 
-  let fields = {
+  let fields = $state({
     title: "",
     desc: "",
     type: "string",
     required: "0",
     keywords: "",
     createdBy: validUser?.user_name,
-  };
-  $: showPopover = false;
+  });
+  let showPopover = $state(false);
+  
 
-  let errors = { title: "", desc: "" };
+  let errors = $state({ title: "", desc: "" });
 
   let formIsValid = false;
 
@@ -107,7 +110,7 @@
     <h3 class="title">Add a New Config Option</h3>
     <form
       action="?/addConfigOption"
-      on:submit|preventDefault={handleSubmit}
+      onsubmit={preventDefault(handleSubmit)}
       class="form"
     >
       <div class="field">
@@ -119,7 +122,7 @@
           id="title"
           name="title"
           bind:value={fields.title}
-          on:blur={() => validateField("title", fields.title)}
+          onblur={() => validateField("title", fields.title)}
         />
         <p class="error">{errors.title}</p>
       </div>
@@ -131,8 +134,8 @@
           name="desc"
           id="description"
           bind:value={fields.desc}
-          on:blur={() => validateField("desc", fields.desc)}
-        />
+          onblur={() => validateField("desc", fields.desc)}
+></textarea>
         <p class="error">{errors.desc}</p>
       </div>
       <div class="multiFields">

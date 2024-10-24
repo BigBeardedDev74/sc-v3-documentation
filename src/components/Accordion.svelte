@@ -1,33 +1,40 @@
 <script>
-  export let open = false,
-    title,
-    type,
-    desc,
-    required;
-  $: message = `<p>copied!</p>`;
+  let message = $state(`<p>${title} copied!</p>`);
+  import { slide } from "svelte/transition";
 
   import Toast from "$components/Toast.svelte";
+  /**
+   * @typedef {Object} Props
+   * @property {boolean} [open]
+   * @property {any} title
+   * @property {any} type
+   * @property {any} desc
+   * @property {any} required
+   */
+
+  /** @type {Props} */
+  let { open = $bindable(false), title, type, desc, required } = $props();
   const handleClick = () => (open = !open);
 
   const copyToClipboard = () => {
-    navigator.clipboard.writeText(title);
+    navigator.clipboard.writeText(`"${title}":`);
+    message = `<p>${title} copied!</p>`;
+    showPopover = true;
     setTimeout(() => {
-      message = `<p>${title} copied!</p>`;
-      showPopover = true;
-    }, 100);
-    console.log(message);
+      showPopover = false;
+    }, 1500);
   };
 
-  $: requiredText = required === 1 ? "Yes" : "No";
-  $: showPopover = false;
+  let requiredText = $derived(required === 1 ? "Yes" : "No");
+  let showPopover = $state(false);
 </script>
 
 <div class="configs">
   <div class="header">
-    <button class="openButton" on:click={handleClick}>
+    <button class="openButton" onclick={handleClick}>
       <h4 class={open ? "option open" : "option"}>{title}</h4>
     </button>
-    <button class="copyButton" on:click={copyToClipboard}>
+    <button class="copyButton" onclick={copyToClipboard}>
       <div class="buttonIcon">
         <svg
           viewBox="0 0 554 686"
@@ -61,7 +68,9 @@
         </svg>
       </div>
     </button>
-    <Toast {showPopover} {message} />
+    {#if showPopover}
+      <Toast {showPopover} message={`${title} copied`} duration={1500} } />
+    {/if}
   </div>
 
   {#if open}
