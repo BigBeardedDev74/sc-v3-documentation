@@ -1,20 +1,20 @@
 <script>
-  import { run } from "svelte/legacy";
-
   import Accordion from "$components/Accordion.svelte";
   import { fly } from "svelte/transition";
   import { createSearchStore, searchHandler } from "$lib/search";
   import { onDestroy } from "svelte";
 
-  let { data } = $props();
+  export let data;
 
   let configDetails = data.configOptions;
 
   configDetails = configDetails.filter((option) => option.archived !== 1);
 
-  let currentOption = $state();
+  let currentOption = null;
+  let type = null;
 
-  let type = $state();
+  $: currentOption = null;
+  $: type = null;
 
   configDetails = configDetails.map((option) => {
     let searchTerms = `${option?.title} ${option?.desc} ${option?.keywords}`;
@@ -24,13 +24,10 @@
   const searchStore = createSearchStore(configDetails);
   const unsubscribe = searchStore.subscribe((model) => searchHandler(model));
 
-  let updatedConfigDetails;
-  run(() => {
-    updatedConfigDetails = $searchStore.filtered;
-  });
-  let numOfOptions = $derived(updatedConfigDetails.length);
+  $: updatedConfigDetails = $searchStore.filtered;
+  $: numOfOptions = updatedConfigDetails.length;
 
-  let isValidUser = $state(false);
+  let isValidUser = false;
   if (data?.validUser) {
     isValidUser = true;
   }
@@ -56,23 +53,21 @@
     unsubscribe();
   });
 
-  run(() => {
-    updatedConfigDetails.sort((a, b) => {
-      if (a.required && b.required) {
-        return 0;
-      }
-      if (a.required) {
-        return -1;
-      }
-      if (b.required) {
-        return 1;
-      }
-      return a.title.localeCompare(b.title);
-    });
+  $: updatedConfigDetails.sort((a, b) => {
+    if (a.required && b.required) {
+      return 0;
+    }
+    if (a.required) {
+      return -1;
+    }
+    if (b.required) {
+      return 1;
+    }
+    return a.title.localeCompare(b.title);
   });
 </script>
 
-<dialog class="updateModal" id="updateModal" onclose={handleModalClose}>
+<dialog class="updateModal" id="updateModal" on:close={handleModalClose}>
   {#if type === "delete"}
     <p class="confirmDelete">
       Are you sure you want to delete <span class="currentOption"
@@ -90,7 +85,7 @@
         />
         <button class="button" type="submit">Yes</button>
       </form>
-      <button class="button" onclick={handleModalClose}>No</button>
+      <button class="button" on:click={handleModalClose}>No</button>
     </div>
   {:else}
     <h3 class="updateModalTitle">
@@ -132,7 +127,7 @@
       />
       <div class="modalButtonContainer">
         <button class="button" type="submit">Update</button>
-        <button class="button" type="button" onclick={handleModalClose}
+        <button class="button" type="button" on:click={handleModalClose}
           >Cancel</button
         >
       </div>
@@ -151,7 +146,7 @@
         bind:value={$searchStore.search}
       />
       <button
-        onclick={() => {
+        on:click={() => {
           $searchStore.search = "";
         }}
       >
@@ -160,19 +155,19 @@
     </div>
     <div class="buttonContainer">
       <button
-        onclick={() => {
+        on:click={() => {
           updatedConfigDetails = $searchStore.filtered;
         }}>All</button
       >
       <button
-        onclick={() =>
+        on:click={() =>
           (updatedConfigDetails = $searchStore.filtered.filter(
             (/** @type {{ required: number | boolean; }} */ option) =>
               option.required === 1 || option.required === true
           ))}>Required</button
       >
       <button
-        onclick={() =>
+        on:click={() =>
           (updatedConfigDetails = $searchStore.filtered.filter(
             (/** @type {{ required: number | boolean; }} */ option) =>
               option.required === 0 || option.required === false
@@ -201,7 +196,7 @@
           <div class="deleteButtonContainer">
             {#if !option.required}
               <button
-                onclick={(event) => openUpdateModal(option, event, "delete")}
+                on:click={(event) => openUpdateModal(option, event, "delete")}
               >
                 <div class="buttonIcon">
                   <svg
@@ -259,7 +254,7 @@
               </button>
             {/if}
             <button
-              onclick={(event) => openUpdateModal(option, event, "update")}
+              on:click={(event) => openUpdateModal(option, event, "update")}
             >
               <div class="buttonIcon">
                 <svg
