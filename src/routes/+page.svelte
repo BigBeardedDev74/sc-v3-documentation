@@ -196,6 +196,7 @@
           <div class="deleteButtonContainer">
             {#if !option.required}
               <button
+                aria-label="Delete"
                 on:click={(event) => openUpdateModal(option, event, "delete")}
               >
                 <div class="buttonIcon">
@@ -254,6 +255,7 @@
               </button>
             {/if}
             <button
+              aria-label="edit"
               on:click={(event) => openUpdateModal(option, event, "update")}
             >
               <div class="buttonIcon">

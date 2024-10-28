@@ -30,48 +30,44 @@
 </script>
 
 <div class="configs">
+  <button class="copyButton" aria-label="Copy" onclick={copyToClipboard}>
+    <div class="buttonIcon">
+      <svg viewBox="0 0 554 686" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <mask id="path-1-inside-1_3321_9" fill="white">
+          <rect width="442" height="575" rx="20" />
+        </mask>
+        <rect
+          width="442"
+          height="575"
+          rx="20"
+          stroke-width="100"
+          mask="url(#path-1-inside-1_3321_9)"
+          class="iconPath"
+        />
+        <mask id="path-2-inside-2_3321_9" fill="white">
+          <rect x="112" y="111" width="442" height="575" rx="20" />
+        </mask>
+        <rect
+          x="112"
+          y="111"
+          width="442"
+          height="575"
+          rx="20"
+          stroke-width="100"
+          mask="url(#path-2-inside-2_3321_9)"
+          class="iconPath"
+        />
+      </svg>
+    </div>
+  </button>
   <div class="header">
     <button class="openButton" onclick={handleClick}>
       <h4 class={open ? "option open" : "option"}>{title}</h4>
     </button>
-    <button class="copyButton" onclick={copyToClipboard}>
-      <div class="buttonIcon">
-        <svg
-          viewBox="0 0 554 686"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <mask id="path-1-inside-1_3321_9" fill="white">
-            <rect width="442" height="575" rx="20" />
-          </mask>
-          <rect
-            width="442"
-            height="575"
-            rx="20"
-            stroke-width="100"
-            mask="url(#path-1-inside-1_3321_9)"
-            class="iconPath"
-          />
-          <mask id="path-2-inside-2_3321_9" fill="white">
-            <rect x="112" y="111" width="442" height="575" rx="20" />
-          </mask>
-          <rect
-            x="112"
-            y="111"
-            width="442"
-            height="575"
-            rx="20"
-            stroke-width="100"
-            mask="url(#path-2-inside-2_3321_9)"
-            class="iconPath"
-          />
-        </svg>
-      </div>
-    </button>
     {#if showPopover}
       <Toast
         {showPopover}
-        message={`"${title}": copied to clipboard`}
+        message={`<span>"${title}":</span> copied to clipboard`}
         duration={1500}
         }
       />
@@ -91,6 +87,9 @@
   .configs {
     margin-left: 2rem;
     width: 100%;
+    display: grid;
+    grid-template-columns: 2rem 1fr;
+    gap: 1rem;
   }
 
   .configDetails {
@@ -100,6 +99,7 @@
     background: var(--bgColor);
     margin: 0 2rem 1rem;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+    grid-column: 2/3;
   }
 
   .openButton {
@@ -111,7 +111,9 @@
   }
   .copyButton {
     anchor-name: copyButton;
-    margin: 0 0 0 1rem;
+    margin: 0 1rem 0 0;
+    width: 2rem;
+    height: 2rem;
     background: var(--buttonBgColor);
     color: var(--buttonTextColor);
     padding: 0.3rem 0.5rem 0.1rem;
@@ -119,6 +121,7 @@
     border: none;
     cursor: pointer;
     transition: background 0.2s ease-in-out;
+
     svg {
       width: 0.8rem;
     }
