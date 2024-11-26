@@ -130,12 +130,6 @@
     }
   }
 
-  .copyButtonSuccess {
-    background: oklch(47.44% 0.077 233.06);
-    position: fixed;
-    position-anchor: copyButton;
-  }
-
   .iconPath {
     stroke: var(--buttonTextColor);
   }
