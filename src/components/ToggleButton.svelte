@@ -1,5 +1,5 @@
 <script>
-  import { run } from 'svelte/legacy';
+  import { run } from "svelte/legacy";
 
   import { theme } from "$lib/stores";
 
@@ -33,7 +33,11 @@
   };
 </script>
 
-<button class={darkMode ? "dark" : "light"} onclick={clickHandler}></button>
+<button
+  class={darkMode ? "dark" : "light"}
+  onclick={clickHandler}
+  aria-label="Toggle theme"
+></button>
 
 <style lang="postcss">
   button {

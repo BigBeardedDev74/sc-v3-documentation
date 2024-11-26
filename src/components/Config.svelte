@@ -1,6 +1,4 @@
 <script>
-  import { run } from 'svelte/legacy';
-
   import Accordion from "$components/Accordion.svelte";
   import { fly, fade } from "svelte/transition";
   import { createSearchStore, searchHandler } from "$lib/search";
@@ -17,7 +15,7 @@
   const unsubscribe = searchStore.subscribe((model) => searchHandler(model));
 
   let updatedConfigDetails;
-  run(() => {
+  $effect(() => {
     updatedConfigDetails = $searchStore.filtered;
   });
 
@@ -27,7 +25,7 @@
     unsubscribe();
   });
 
-  run(() => {
+  $effect(() => {
     updatedConfigDetails.sort((a, b) => {
       if (a.required && b.required) {
         return 0;
@@ -116,14 +114,6 @@
 {/if}
 
 <style>
-  .configDetails {
-    padding: 1rem;
-    border: 2px solid #ccc;
-    border-radius: 10px;
-    background: var(--bgColor);
-    margin: 0 2rem 1rem;
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
-  }
   button {
     margin: 0 0 0 1rem;
     background: var(--buttonBgColor);
