@@ -34,6 +34,9 @@
   <a href="/testing" class={$page.data.pathname === "/testing" ? "active" : ""}
     >Testing</a
   >
+  <a href="/designs" class={$page.data.pathname === "/designs" ? "active" : ""}
+    >Designs</a
+  >
   {#if isUser}
     <a
       href="/add-config"

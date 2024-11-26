@@ -39,6 +39,7 @@
     "@auth/sveltekit": "^1.4.1",
     "@neodrag/svelte": "^2.0.6",
     "@neondatabase/serverless": "^0.7.2",
+    "@playwright/test": "^1.49.0",
     "@sveltejs/adapter-vercel": "^4.0.5",
     "@vercel/speed-insights": "^1.0.12",
     "cssnano": "^6.0.1",
@@ -46,6 +47,8 @@
     "drizzle-orm": "^0.32.0",
     "flexsearch": "^0.7.31",
     "mysql2": "^3.8.0",
-    "pg": "^8.11.3"
+    "pg": "^8.11.3",
+    "puppeteer": "^23.9.0",
+    "sharp": "^0.33.5"
   }
 }
