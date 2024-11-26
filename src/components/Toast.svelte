@@ -1,22 +1,35 @@
 <script>
   import { fade } from "svelte/transition";
   import { onMount, onDestroy } from "svelte";
-  export let message = "New Config Added!",
+  /**
+   * @typedef {Object} Props
+   * @property {string} [message]
+   * @property {number} [duration]
+   * @property {string} [type]
+   * @property {boolean} [showPopover]
+   */
+
+  /** @type {Props} */
+  let {
+    message = "New Config Added!",
     duration = 2500,
     type = "success",
-    showPopover = false;
+    showPopover = $bindable(false),
+  } = $props();
 
   /**
    * @type {HTMLElement | null}
    */
-  let toastContainer;
+  let toastContainer = $state();
 
-  $: if (showPopover && toastContainer) {
-    toastContainer?.showPopover();
-    toastContainer?.classList.remove("hide");
-  } else {
-    toastContainer?.hidePopover();
-  }
+  $effect(() => {
+    if (showPopover && toastContainer) {
+      toastContainer?.showPopover();
+      toastContainer?.classList.remove("hide");
+    } else {
+      toastContainer?.hidePopover();
+    }
+  });
 
   const closeToast = () => {
     toastContainer?.classList.add("hide");
@@ -25,14 +38,16 @@
     }, 550);
   };
 
-  $: if (showPopover) {
-    setTimeout(() => {
-      toastContainer?.classList.add("hide");
-    }, duration);
-    setTimeout(() => {
-      showPopover = false;
-    }, duration + 550);
-  }
+  $effect(() => {
+    if (showPopover) {
+      setTimeout(() => {
+        toastContainer?.classList.add("hide");
+      }, duration);
+      setTimeout(() => {
+        showPopover = false;
+      }, duration + 550);
+    }
+  });
 
   onMount(() => {
     toastContainer = document.getElementById("toastContainer");
@@ -53,7 +68,7 @@
   <div class="toast">
     <div class="toast">
       <p class="toastText">{@html message}</p>
-      <button class="toastClose" on:click={() => closeToast()}>&#10005;</button>
+      <button class="toastClose" onclick={() => closeToast()}>&#10005;</button>
     </div>
   </div>
 </div>

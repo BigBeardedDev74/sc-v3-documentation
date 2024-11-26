@@ -1,6 +1,5 @@
 <script>
   import Accordion from "$components/Accordion.svelte";
-
   import Prism from "svelte-prism";
 </script>
 
