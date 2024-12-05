@@ -18,7 +18,6 @@
 
   const user = data?.session?.user;
 
-  $inspect(validUser.role);
   function closePopover() {
     document.getElementById("adminMenu")?.hidePopover();
   }
@@ -78,7 +77,7 @@
         {/if}
       </div>
       <dialog id="adminMenu" popover class="adminMenu">
-        {#if validUser.role === "admin"}
+        {#if validUser?.role === "admin"}
           <a
             href="/users"
             onclick={() => {
@@ -222,7 +221,7 @@
       translate 0.3s ease-in-out,
       display 0.3s ease-in-out,
       opacity 0.3s ease-in-out;
-    transition-behavior: allow-discrete;
+
     &:popover-open {
       display: grid;
       opacity: 1;

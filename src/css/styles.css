@@ -1,4 +1,5 @@
 :root {
+  transition-behavior: allow-discrete;
   --backgroundColor: oklch(90.06% 0 0);
   --textColor: oklch(32.11% 0 0);
   --borderColor: oklch(84.52% 0 0);

@@ -1,6 +1,9 @@
 <script>
   import { allSites } from "$lib/siteData/allSites.js";
 
+  let { data } = $props();
+  const validUser = data?.validUser ?? false;
+
   const screenshots = import.meta.glob(
     "/src/lib/siteData/screenshots/**/*.webp",
     {
@@ -10,21 +13,25 @@
   );
 </script>
 
-<div class="sitesContainer">
-  {#each allSites as site}
-    <div class="site">
-      <div class="siteImage">
-        <img
-          src={screenshots[
-            `/src/lib/siteData/screenshots/${site.type}/${site.site}.webp`
-          ]}
-          alt={site.site}
-        />
+{#if validUser}
+  <div class="sitesContainer">
+    {#each allSites as site}
+      <div class="site">
+        <div class="siteImage">
+          <img
+            src={screenshots[
+              `/src/lib/siteData/screenshots/${site.type}/${site.site}.webp`
+            ]}
+            alt={site.site}
+          />
+        </div>
+        <p><a href={`https://${site.site}`} target="_blank">{site.site}</a></p>
       </div>
-      <p><a href={`https://${site.site}`} target="_blank">{site.site}</a></p>
-    </div>
-  {/each}
-</div>
+    {/each}
+  </div>
+{:else}
+  <p>You are not authorized to view this page.</p>
+{/if}
 
 <style>
   .sitesContainer {

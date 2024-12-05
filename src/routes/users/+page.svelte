@@ -5,7 +5,7 @@
   let type = $state(null);
 
   const validUser = data?.validUser;
-  $inspect(validUser.role);
+
   const openUpdateModal = (user, event, modalType) => {
     currentUser = user;
     type = modalType;
@@ -24,7 +24,7 @@
   };
 </script>
 
-{#if validUser.role === "admin"}
+{#if validUser?.role === "admin"}
   <dialog class="updateModal" id="updateModal" popover>
     {#if type === "delete"}
       <p class="confirmDelete">

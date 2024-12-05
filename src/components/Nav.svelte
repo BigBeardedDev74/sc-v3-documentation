@@ -3,8 +3,6 @@
   import { slide, fade, scale } from "svelte/transition";
   let { isUser } = $props();
 
-  $inspect(isUser);
-
   let showNav = false;
 
   const clickHandler = () => {
@@ -36,10 +34,11 @@
   <a href="/testing" class={$page.data.pathname === "/testing" ? "active" : ""}
     >Testing</a
   >
-  <a href="/designs" class={$page.data.pathname === "/designs" ? "active" : ""}
-    >Designs</a
-  >
   {#if isUser}
+    <a
+      href="/designs"
+      class={$page.data.pathname === "/designs" ? "active" : ""}>Designs</a
+    >
     <a
       href="/add-config"
       class={$page.data.pathname === "/add-config" ? "active" : ""}
