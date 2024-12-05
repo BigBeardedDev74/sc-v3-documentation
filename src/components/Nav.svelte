@@ -3,6 +3,8 @@
   import { slide, fade, scale } from "svelte/transition";
   let { isUser } = $props();
 
+  $inspect(isUser);
+
   let showNav = false;
 
   const clickHandler = () => {

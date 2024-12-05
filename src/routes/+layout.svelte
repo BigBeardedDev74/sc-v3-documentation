@@ -18,6 +18,11 @@
 
   const user = data?.session?.user;
 
+  $inspect(validUser.role);
+  function closePopover() {
+    document.getElementById("adminMenu")?.hidePopover();
+  }
+
   injectSpeedInsights();
   onMount(() => {
     if (localStorage.getItem("theme") === "dark") {
@@ -65,16 +70,29 @@
     </a>
 
     {#if user}
-      <a href="/auth/signout">
-        <div class="userContainer">
-          {#if user.image}
-            <div class="userImageContainer">
-              <img src={user?.image} alt="Current User" />
-            </div>
-          {/if}
-          <span>Sign out</span>
-        </div>
-      </a>
+      <div class="userContainer">
+        {#if user.image}
+          <button class="userImageContainer" popovertarget="adminMenu">
+            <img src={user?.image} alt="Current User" />
+          </button>
+        {/if}
+      </div>
+      <dialog id="adminMenu" popover class="adminMenu">
+        {#if validUser.role === "admin"}
+          <a
+            href="/users"
+            onclick={() => {
+              closePopover();
+            }}>Users</a
+          >
+        {/if}
+        <a
+          href="/auth/signout"
+          onclick={() => {
+            closePopover();
+          }}>Log Out</a
+        >
+      </dialog>
     {:else}
       <a href="/auth/signin">
         <div class="userContainer">
@@ -89,7 +107,11 @@
 
   <main>
     {#key data.pathname}
-      <div in:fade={{ duration: 150, delay: 155 }} out:fade={{ duration: 150 }} class='content'>
+      <div
+        in:fade={{ duration: 150, delay: 155 }}
+        out:fade={{ duration: 150 }}
+        class="content"
+      >
         {@render children?.()}
       </div>
     {/key}
@@ -113,6 +135,7 @@
     border-bottom: 1px solid var(--borderColor);
     background: var(--bgColor);
     a {
+      width: fit-content;
       &:hover {
         --hoverGlow: none;
         text-decoration: none;
@@ -157,24 +180,55 @@
 
   main > .full-width {
     grid-column: full-width;
-
     display: grid;
     grid-template-columns: inherit;
   }
   .userImageContainer {
     width: 50px;
+    anchor-name: --userImageContainer;
     aspect-ratio: 1/1;
     border-radius: 50%;
     overflow: hidden;
+    display: grid;
+    place-items: center;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    img {
+      width: 100%;
+      margin: 0;
+      padding: 0;
+    }
   }
-  .userContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  .adminMenu {
+    position: absolute;
+    position-anchor: --userImageContainer;
+    border: none;
+    opacity: 0;
+    display: grid;
     gap: 10px;
-    a {
-      text-decoration: none;
-      color: var(--buttonBgColor);
+    top: anchor(bottom);
+    left: anchor(left);
+    padding-inline: 1.5rem;
+    padding-block: 1rem;
+    border-radius: 10px;
+    margin: 0;
+    background: var(--bgColor);
+    margin-block-start: 1rem;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.4);
+    transition:
+      display 0.3s ease-in-out,
+      opacity 0.3s ease-in-out;
+    transition-behavior: allow-discrete;
+    &:popover-open {
+      display: grid;
+
+      opacity: 1;
+
+      @starting-style {
+        display: grid;
+        opacity: 0;
+      }
     }
   }
 </style>

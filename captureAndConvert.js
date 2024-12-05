@@ -4,10 +4,20 @@ import sharp from "sharp";
 import fs from "fs/promises";
 import path from "path";
 
-// Create directories if they don't exist
+async function cleanDirectory() {
+  const baseDir = "./src/lib/siteData/screenshots";
+  try {
+    // Remove the entire screenshots directory and its contents
+    await fs.rm(baseDir, { recursive: true, force: true });
+    console.log("Screenshots directory cleaned");
+  } catch (error) {
+    console.error("Error cleaning directory:", error);
+  }
+}
+
 async function ensureDirectories() {
   const baseDir = "./src/lib/siteData/screenshots";
-  const types = [...new Set(allSites.map((site) => site.type))]; // Get unique types
+  const types = [...new Set(allSites.map((site) => site.type))];
 
   await fs.mkdir(baseDir, { recursive: true });
 
@@ -100,6 +110,9 @@ async function convertPNGtoWebP() {
 }
 
 async function main() {
+  console.log("Cleaning screenshots directory...");
+  await cleanDirectory();
+
   console.log("Creating directories...");
   await ensureDirectories();
 

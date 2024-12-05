@@ -329,13 +329,11 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-
-    &.isValidUser {
-      padding: 0.5rem 1rem 0.5rem 0;
-      &:nth-child(odd) {
-        background: var(--stripeBgColor);
-      }
+    &:nth-child(odd) {
+      background: var(--stripeBgColor);
     }
+
+    padding: 0.5rem 1rem 0.5rem 0;
   }
   .deleteButtonContainer {
     display: flex;
@@ -370,21 +368,7 @@
     color: var(--secondaryColor);
     font-weight: 900;
   }
-  #updateForm {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    width: 50vw;
-    max-width: 740px;
-    @media (max-width: 768px) {
-      width: 90vw;
-    }
-    select {
-      padding: 0.5rem 1rem;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-    }
-  }
+
   .buttonIcon {
     width: 20px;
     height: 20px;
