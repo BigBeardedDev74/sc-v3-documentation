@@ -207,24 +207,26 @@
     opacity: 0;
     display: grid;
     gap: 10px;
-    top: anchor(bottom);
-    left: anchor(left);
     padding-inline: 1.5rem;
     padding-block: 1rem;
     border-radius: 10px;
     margin: 0;
+    inset: 0;
     background: var(--bgColor);
     margin-block-start: 1rem;
+    top: anchor(bottom);
+    left: anchor(left);
+    pointer-events: none;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.4);
     transition:
+      translate 0.3s ease-in-out,
       display 0.3s ease-in-out,
       opacity 0.3s ease-in-out;
     transition-behavior: allow-discrete;
     &:popover-open {
       display: grid;
-
       opacity: 1;
-
+      pointer-events: auto;
       @starting-style {
         display: grid;
         opacity: 0;
