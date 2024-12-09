@@ -205,6 +205,7 @@
     border: none;
     opacity: 0;
     display: grid;
+    width: max-content;
     gap: 10px;
     padding-inline: 1.5rem;
     padding-block: 1rem;
@@ -213,8 +214,7 @@
     inset: 0;
     background: var(--bgColor);
     margin-block-start: 1rem;
-    top: anchor(bottom);
-    left: anchor(left);
+    position-area: block-end span-inline-start;
     pointer-events: none;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.4);
     transition:
