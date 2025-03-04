@@ -1,13 +1,37 @@
 import { chromium } from "@playwright/test";
-import { allSites } from "./src/lib/siteData/allSites.js";
 import sharp from "sharp";
 import fs from "fs/promises";
 import path from "path";
 
-async function cleanDirectory() {
+async function copySitesFile() {
+  try {
+    const sourcePath = "../sc.simpleform/scripts/allSites.js";
+    const destPath = "./src/lib/siteData/allSites.js";
+
+    // Read the source file
+    let content = await fs.readFile(sourcePath, "utf8");
+
+    // Replace module.exports with export
+    content = content.replace(/module\.exports\s*=\s*/, "export ");
+
+    // Write the modified content to the destination
+    await fs.writeFile(destPath, content, "utf8");
+    console.log("Sites file copied and transformed successfully");
+  } catch (error) {
+    console.error("Error copying and transforming sites file:", error);
+    throw error;
+  }
+}
+
+async function init() {
+  await copySitesFile();
+  const { sites } = await import("./src/lib/siteData/allSites.js");
+  return sites;
+}
+
+async function cleanDirectory(sites) {
   const baseDir = "./src/lib/siteData/screenshots";
   try {
-    // Remove the entire screenshots directory and its contents
     await fs.rm(baseDir, { recursive: true, force: true });
     console.log("Screenshots directory cleaned");
   } catch (error) {
@@ -15,9 +39,9 @@ async function cleanDirectory() {
   }
 }
 
-async function ensureDirectories() {
+async function ensureDirectories(sites) {
   const baseDir = "./src/lib/siteData/screenshots";
-  const types = [...new Set(allSites.map((site) => site.type))];
+  const types = [...new Set(sites.map((site) => site.type))];
 
   await fs.mkdir(baseDir, { recursive: true });
 
@@ -26,10 +50,10 @@ async function ensureDirectories() {
   }
 }
 
-async function captureScreenshots() {
+async function captureScreenshots(sites) {
   const browser = await chromium.launch();
 
-  for (const site of allSites) {
+  for (const site of sites) {
     let context;
     try {
       const url = site.site.startsWith("http")
@@ -75,9 +99,9 @@ async function captureScreenshots() {
     .catch((e) => console.error("Error closing browser:", e));
 }
 
-async function convertPNGtoWebP() {
+async function convertPNGtoWebP(sites) {
   const baseDir = "./src/lib/siteData/screenshots";
-  const types = [...new Set(allSites.map((site) => site.type))];
+  const types = [...new Set(sites.map((site) => site.type))];
 
   for (const type of types) {
     const typeDir = path.join(baseDir, type);
@@ -110,17 +134,20 @@ async function convertPNGtoWebP() {
 }
 
 async function main() {
+  console.log("Copying sites file and importing data...");
+  const sites = await init();
+
   console.log("Cleaning screenshots directory...");
-  await cleanDirectory();
+  await cleanDirectory(sites);
 
   console.log("Creating directories...");
-  await ensureDirectories();
+  await ensureDirectories(sites);
 
   console.log("Starting screenshot capture...");
-  await captureScreenshots();
+  await captureScreenshots(sites);
 
   console.log("Starting WebP conversion...");
-  await convertPNGtoWebP();
+  await convertPNGtoWebP(sites);
 
   console.log("All operations completed!");
 }
