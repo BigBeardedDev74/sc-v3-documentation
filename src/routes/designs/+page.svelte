@@ -8,7 +8,8 @@
     "/src/lib/siteData/screenshots/**/*.webp",
     {
       eager: true,
-      as: "url",
+      query: "?url",
+      import: "default",
     }
   );
 </script>
