@@ -50,49 +50,152 @@ async function ensureDirectories(sites) {
   }
 }
 
+async function filterProblematicSites(sites) {
+  // Sites that are known to have issues or are no longer accessible
+  const problematicSites = [
+    // Removed the two sites that need screenshots
+  ];
+
+  return sites.filter((site) => !problematicSites.includes(site.site));
+}
+
+async function getSiteConfig(site) {
+  // Special configuration for sites that are known to be slow or problematic
+  const slowSites = ["americansolarprograms.com", "bath.serviceselector.net"];
+
+  if (slowSites.includes(site.site)) {
+    return {
+      timeout: 120000, // 2 minutes
+      maxRetries: 4, // More retries for slow sites
+      waitStrategy: "load", // Use 'load' instead of 'domcontentloaded'
+      extraWait: 15000, // Wait 15 seconds after load
+    };
+  }
+
+  return {
+    timeout: 60000, // 1 minute
+    maxRetries: 2, // Standard retries
+    waitStrategy: "domcontentloaded",
+    extraWait: 10000, // Wait 10 seconds after load
+  };
+}
+
 async function captureScreenshots(sites) {
-  const browser = await chromium.launch();
+  // Filter out known problematic sites
+  const filteredSites = await filterProblematicSites(sites);
+  console.log(
+    `Filtered out ${sites.length - filteredSites.length} problematic sites`
+  );
 
-  for (const site of sites) {
+  const browser = await chromium.launch({
+    args: [
+      "--no-sandbox",
+      "--disable-setuid-sandbox",
+      "--disable-dev-shm-usage",
+    ],
+  });
+
+  let successCount = 0;
+  let failureCount = 0;
+
+  for (const site of filteredSites) {
     let context;
-    try {
-      const url = site.site.startsWith("http")
-        ? site.site
-        : `https://${site.site}`;
-      console.log(`Capturing screenshot for ${url}`);
+    let retries = 0;
+    const siteConfig = await getSiteConfig(site);
 
-      context = await browser.newContext({
-        viewport: { width: 1920, height: 1080 },
-        timeout: 30000,
-      });
+    while (retries <= siteConfig.maxRetries) {
+      try {
+        const url = site.site.startsWith("http")
+          ? site.site
+          : `https://${site.site}`;
+        console.log(
+          `Capturing screenshot for ${url} (attempt ${retries + 1}/${
+            siteConfig.maxRetries + 1
+          })`
+        );
 
-      const page = await context.newPage();
-      await page.goto(url, {
-        waitUntil: "networkidle",
-        timeout: 30000,
-      });
+        context = await browser.newContext({
+          viewport: { width: 1920, height: 1080 },
+          timeout: siteConfig.timeout,
+          userAgent:
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+        });
 
-      const pageHeight = await page.evaluate(
-        () => document.documentElement.scrollHeight
-      );
-      const aspectRatio = 1920 / pageHeight;
-      const newHeight = Math.round(600 / aspectRatio);
+        const page = await context.newPage();
 
-      await page.setViewportSize({ width: 1920, height: pageHeight });
-      await page.screenshot({
-        path: `src/lib/siteData/screenshots/${site.type}/${site.site}.png`,
-        fullPage: true,
-      });
-    } catch (error) {
-      console.error(`Error capturing ${site.site}:`, error);
-    } finally {
-      if (context) {
-        await context
-          .close()
-          .catch((e) => console.error("Error closing context:", e));
+        // Set longer timeout for navigation
+        await page.goto(url, {
+          waitUntil: siteConfig.waitStrategy,
+          timeout: siteConfig.timeout,
+        });
+
+        // Wait additional time for slow sites
+        console.log(
+          `Waiting ${siteConfig.extraWait / 1000} seconds for ${
+            site.site
+          } to fully load...`
+        );
+        await new Promise((resolve) =>
+          setTimeout(resolve, siteConfig.extraWait)
+        );
+
+        // Wait a bit more for any remaining resources
+        try {
+          await page.waitForLoadState("networkidle", { timeout: 10000 });
+        } catch (e) {
+          console.log(
+            `Network idle timeout for ${site.site}, continuing anyway...`
+          );
+        }
+
+        const pageHeight = await page.evaluate(
+          () => document.documentElement.scrollHeight
+        );
+        const aspectRatio = 1920 / pageHeight;
+        const newHeight = Math.round(600 / aspectRatio);
+
+        await page.setViewportSize({ width: 1920, height: pageHeight });
+        await page.screenshot({
+          path: `src/lib/siteData/screenshots/${site.type}/${site.site}.png`,
+          fullPage: true,
+        });
+
+        console.log(`Successfully captured ${site.site}`);
+        successCount++;
+        break; // Success, exit retry loop
+      } catch (error) {
+        retries++;
+        console.error(
+          `Error capturing ${site.site} (attempt ${retries}/${
+            siteConfig.maxRetries + 1
+          }):`,
+          error.message
+        );
+
+        if (retries > siteConfig.maxRetries) {
+          console.error(
+            `Failed to capture ${site.site} after ${
+              siteConfig.maxRetries + 1
+            } attempts`
+          );
+          failureCount++;
+        } else {
+          console.log(`Retrying ${site.site} in 3 seconds...`);
+          await new Promise((resolve) => setTimeout(resolve, 3000));
+        }
+      } finally {
+        if (context) {
+          await context
+            .close()
+            .catch((e) => console.error("Error closing context:", e));
+        }
       }
     }
   }
+
+  console.log(
+    `Screenshot capture completed: ${successCount} successful, ${failureCount} failed`
+  );
 
   await browser
     .close()
@@ -134,22 +237,27 @@ async function convertPNGtoWebP(sites) {
 }
 
 async function main() {
-  console.log("Copying sites file and importing data...");
-  const sites = await init();
+  try {
+    console.log("Copying sites file and importing data...");
+    const sites = await init();
 
-  console.log("Cleaning screenshots directory...");
-  await cleanDirectory(sites);
+    console.log("Cleaning screenshots directory...");
+    await cleanDirectory(sites);
 
-  console.log("Creating directories...");
-  await ensureDirectories(sites);
+    console.log("Creating directories...");
+    await ensureDirectories(sites);
 
-  console.log("Starting screenshot capture...");
-  await captureScreenshots(sites);
+    console.log("Starting screenshot capture...");
+    await captureScreenshots(sites);
 
-  console.log("Starting WebP conversion...");
-  await convertPNGtoWebP(sites);
+    console.log("Starting WebP conversion...");
+    await convertPNGtoWebP(sites);
 
-  console.log("All operations completed!");
+    console.log("All operations completed successfully!");
+  } catch (error) {
+    console.error("Error in main process:", error);
+    process.exit(1);
+  }
 }
 
 main().catch(console.error);

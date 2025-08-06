@@ -1,8 +1,8 @@
 packages:
-  - '.'
+  - "."
 
 onlyBuiltDependencies:
-  - '@vercel/speed-insights'
+  - "@vercel/speed-insights"
   - esbuild
   - puppeteer
   - sharp
