@@ -72,7 +72,7 @@
 <dialog class="updateModal" id="updateModal" onclose={handleModalClose}>
   {#if type === "delete"}
     <p class="confirmDelete">
-      Are you sure you want to DELETE <span class="currentOption"
+      Are you sure you want to delete <span class="currentOption"
         >{currentOption?.title}</span
       >?
     </p>
